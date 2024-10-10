@@ -1,0 +1,16 @@
+asgiref==3.8.1
+beautifulsoup4==4.12.3
+Django==5.1.1
+django-admin-interface==0.28.9
+django-browser-reload==1.15.0
+django-cleanup==9.0.0
+django-colorfield==0.11.0
+pillow==10.4.0
+python-slugify==8.0.4
+setuptools==72.1.0
+soupsieve==2.6
+sqlparse==0.5.1
+text-unidecode==1.3
+tzdata==2024.1
+wheel==0.44.0
+whitenoise==6.7.0
