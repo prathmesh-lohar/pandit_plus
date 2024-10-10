@@ -1,0 +1,824 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}pandit plus | online pandit booking website{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'style/pages.css' %}">
+{% endblock link %}
+
+{% block main %}
+
+<div class="wrappped_body">
+
+    <section class="headding text-center">
+        <h2>Pandit Profile Dashboard </h2>
+    </section>
+
+    <div class="content container mt-0 mt-md-3">
+
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-3 tabs_container ">
+                    <span class="">Account Settings</span>
+                    <ul class="nav nav-tabs pb-0" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab"
+                                data-bs-toggle="tab" href="#home" role="tab"
+                                aria-controls="home"
+                                aria-selected="true">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab"
+                                data-bs-toggle="tab" href="#profile" role="tab"
+                                aria-controls="profile" aria-selected="false">
+                             Edit Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="settings-tab"
+                                data-bs-toggle="tab" href="#settings" role="tab"
+                                aria-controls="settings"
+                                aria-selected="false">Add New Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="messages-tab"
+                                data-bs-toggle="tab" href="#messages" role="tab"
+                                aria-controls="messages"
+                                aria-selected="false">My Bookings</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home"
+                            role="tabpanel" aria-labelledby="home-tab">
+                            <div class="wrapper_pandit_prof">
+                            <div class="content_area">
+                                <div class="container head_area">
+                                    <div class="row align-items-center mt-0">
+                                       <div class="col-12 col-md-9">
+                                        <div class="row align-items-center">
+                                            <div class="col-4 col-md-3 ">
+                                                <img src="{% if profile.profile_picture %}{{profile.profile_picture.url}} {% else %}{% static 'assets/png/no_dp.png' %}{% endif %}" alt="">
+                                            </div>
+                                            <div class="col-8 col-md-7 ">
+                                             <h4>{{profile.name}} {{profile.last_name}}</h4>
+                                             <span >Currently you are <span id="status-text"> {% if profile.availability == "availabe" %} Online {% else %} Offline{% endif %} </span></span>
+                                            </div>
+                                        </div>
+                                       </div>
+                                        <div class="col-12 col-md-3 sitch_col">
+                                            
+                                            <div class="switch-button switch-button-lg switch-button-onlineoffline  mx-2 mb-2 mb-lg-0">
+                                                <input type="checkbox" name="item6" id="item6" {% if profile.availability == "availabe" %} Checked {% else %} {% endif %} />
+                                                <span><label for="item6"></label></span>
+                                            </div>
+                                                                                   
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container form_area">
+                                    <b>Personal Details</b>
+                                    <form>
+                                        <div class="row">
+                                          <div class="col-md-6 mb-3">
+                                            <label for="firstName" class="form-label">First name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="firstName" placeholder="Your first Name" name="name" value="{{profile.name}}" disabled >
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                            <label for="lastName" class="form-label">Last name <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="lastName" placeholder="Your last Name"  name="last_name" value="{{profile.last_name}}" disabled>
+                                          </div>
+                                        </div>
+                                      
+                                        <div class="row">
+                                          <div class="col-md-6 mb-3">
+                                            <label for="contactNumber" class="form-label">Contact Number</label>
+                                            <input type="text" class="form-control" id="contactNumber" placeholder="Your Mobile Number"  name="mobile" value="{{profile.mobile}}" disabled>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                            <label for="altContactNumber" class="form-label">Alternative Contact Number</label>
+
+                                            <input type="text" class="form-control" id="altContactNumber" placeholder="Your Alternative Mobile" name="alternative_mobile" value="{{profile.alternative_mobile}}" disabled>
+                                          </div>
+                                        </div>
+                                      
+                                        <div class="row">
+                                          <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" id="email" placeholder="Your Email"  name="email" value="{{profile.email}}" disabled>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                            <label for="dob" class="form-label">Date of Birth</label>
+                                            <input type="date" class="form-control" id="dob" placeholder="Your Date Of Birth" name="dob"  value="{{ profile.dob|date:'Y-m-d' }}" disabled>
+                                          </div>
+                                        </div>
+                                      
+                                        <div class="row">
+                                          <div class="col-md-6 mb-3">
+                                            <label for="education" class="form-label">Education</label>
+                                            <input type="text" class="form-control" id="education" placeholder="Your Education" name="education"  value="{{ profile.education}}" disabled>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                            <label for="college" class="form-label">College Name</label>
+                                            <input type="text" class="form-control" id="college" placeholder="college" name="college"  value="{{ profile.college}}" disabled>
+                                          </div>
+                                        </div>
+                                      
+                                        <div class="row">
+                                          <div class="col-md-6 mb-3">
+                                            <label for="experience" class="form-label">Experience</label>
+                                            <input type="text" class="form-control" id="experience" placeholder="Your Name" name="Exp"  value="{{ profile.Exp}}" disabled>
+                                          </div>
+                                          <div class="col-md-6 mb-3">
+                                            <label for="address" class="form-label">Address</label>
+                                            <input type="text" class="form-control" id="address" placeholder="Your Address" name="addreess"  value="{{ profile.address}}" disabled>
+                                          </div>
+                                        </div>
+                                      </form>
+                                    <b> Karmakand/Services</b>
+                                    <ul class="list-group list-group-horizontal-sm flex-wrap">
+                                        {% for s in pandit_service %}
+                                        <li class="list-group-item border-0"><span class="fa fa-circle fa-xs"> &nbsp;</span> {{s.service}}</li>
+                                        
+                                        {% endfor %}
+
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel"
+                            aria-labelledby="profile-tab">
+                            <div class="wrapper_pandit_prof_edit">
+                                <div class="content_area">
+                                    <div class="container head_area">
+                                        <div class="row align-items-center mt-0">
+                                           <div class="col-12 col-md-9">
+                                            <div class="row align-items-center">
+                                                <div class="col-4 col-md-3 ">
+                                                    <!-- <img src="{% if profile.profile_picture %}{{profile.profile_picture.url}} {% else %}{% static 'assets/png/no_dp.png' %}{% endif %}" alt=""> -->
+                                                  
+
+                                                    <div class="avatar-upload">
+                                                        <div class="avatar-edit">
+                                                            <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                                            <label for="imageUpload"></label>
+                                                        </div>
+                                                        <div class="avatar-preview">
+                                                            <div id="imagePreview" style="background-image: url('{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}{% static 'assets/png/no_dp.png' %}{% endif %}');">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                             
+
+                                                </div>
+                                                <div class="col-8 col-md-7 ">
+                                                 <h4>{{profile.name}} {{profile.last_name}}</h4>
+                                                 <span >Currently you are <span id="status-text"> {% if profile.availability == "availabe" %} Online {% else %} Offline{% endif %} </span></span>
+                                                </div>
+                                            </div>
+                                           </div>
+                                            <div class="col-12 col-md-3 sitch_col">
+                                                
+                                                <div class="switch-button switch-button-lg switch-button-onlineoffline  mx-2 mb-2 mb-lg-0">
+                                                    <input type="checkbox" name="item6" id="item6" {% if profile.availability == "availabe" %} Checked {% else %} {% endif %} />
+                                                    <span><label for="item6"></label></span>
+                                                </div>
+                                                                                       
+                                                    
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="container form_area">
+                                        <b>Personal Details</b>
+                                        <form method="POST" action="/pandit/update_profile">
+                                           {% csrf_token %}
+                                            <div class="row">
+                                              <div class="col-md-6 mb-3">
+                                                <label for="firstName" class="form-label">First name <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="firstName" placeholder="Your first Name" name="name" value="{{profile.name}}"  >
+                                              </div>
+                                              <div class="col-md-6 mb-3">
+                                                <label for="lastName" class="form-label">Last name <span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control" id="lastName" placeholder="Your last Name"  name="last_name" value="{{profile.last_name}}" >
+                                              </div>
+                                            </div>
+                                          
+                                            <div class="row">
+                                              <div class="col-md-6 mb-3">
+                                                <label for="contactNumber" class="form-label">Contact Number</label>
+                                                <input type="text" class="form-control" id="contactNumber" placeholder="Your Mobile Number"  name="mobile" value="{{profile.mobile}}" >
+                                              </div>
+                                              <div class="col-md-6 mb-3">
+                                                <label for="altContactNumber" class="form-label">Alternative Contact Number</label>
+    
+                                                <input type="text" class="form-control" id="altContactNumber" placeholder="Your Alternative Mobile" name="alternative_mobile" value="{{profile.alternative_mobile}}" >
+                                              </div>
+                                            </div>
+                                          
+                                            <div class="row">
+                                              <div class="col-md-6 mb-3">
+                                                <label for="email" class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" id="email" placeholder="Your Email"  name="email" value="{{profile.email}}" >
+                                              </div>
+                                              <div class="col-md-6 mb-3">
+                                                <label for="dob" class="form-label">Date of Birth</label>
+                                                <input type="date" class="form-control" id="dob" placeholder="Your Date Of Birth" name="dob"  value="{{ profile.dob|date:'Y-m-d' }}" >
+                                              </div>
+                                            </div>
+                                          
+                                            <div class="row">
+                                              <div class="col-md-6 mb-3">
+                                                <label for="education" class="form-label">Education</label>
+                                                <input type="text" class="form-control" id="education" placeholder="Your Education" name="education"  value="{{ profile.education}}" >
+                                              </div>
+                                              <div class="col-md-6 mb-3">
+                                                <label for="college" class="form-label">College Name</label>
+                                                <input type="text" class="form-control" id="college" placeholder="college" name="college"  value="{{ profile.college}}" >
+                                              </div>
+                                            </div>
+                                          
+                                            <div class="row">
+                                              <div class="col-md-6 mb-3">
+                                                <label for="experience" class="form-label">Experience</label>
+                                                <input type="text" class="form-control" id="experience" placeholder="Your Name" name="Exp"  value="{{ profile.Exp}}" >
+                                              </div>
+                                              <div class="col-md-6 mb-3">
+                                                <label for="address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" id="address" placeholder="Your Address" name="addreess"  value="{{ profile.address}}" >
+                                              </div>
+                                              <div class="container">
+                                               <div class="row">
+                                                <div class="col-12 col-md-6"><button class="btn btn_main" type="submit">Update Profile</button></div>
+                                                <div class="col-12 col-md-6">
+                                                    <a href="/pandi">
+                                                    <button class="btn btn_main_outline" >Cancel</button>
+                                                    </a>
+                                                </div>
+                                               </div>
+                                              </div>
+                                            </div>
+                                          </form>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                </div>
+                            
+                            
+                        </div>
+                        <div class="tab-pane fade" id="messages" role="tabpanel"
+                            aria-labelledby="messages-tab">
+                            
+
+
+
+<!-- List Bookings -->
+<!-- Your Bookings List -->
+ <div class="wrapper_pandit_prof">
+    <div class="content_area p-5">
+        
+
+           
+            <div class="">
+                <h2>Your Bookings</h2>
+
+<ul>
+    {% for booking in bookings %}
+    <li>
+        {{ booking.name_of_pooja }} - {{ booking.date }} - {{ booking.status }}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateBookingModal{{ booking.id }}">
+            Update
+        </button>
+    </li>
+
+    <!-- Bootstrap Modal for each booking -->
+    <div class="modal fade" id="updateBookingModal{{ booking.id }}" tabindex="-1" aria-labelledby="updateBookingModalLabel{{ booking.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateBookingModalLabel{{ booking.id }}">Update Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/pandit/update-booking/{{booking.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                        <!-- Pass the booking form fields -->
+                        <div class="mb-3">
+                            <label for="id_date" class="form-label">Conform Date</label>
+                            <input type="date" name="conform_date"  class="form-control" id="id_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_time" class="form-label">Conform Time</label>
+                            <input type="time" name="conform_time"  class="form-control" id="id_time">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_status" class="form-label">Status</label>
+                            <select name="status" class="form-select" id="id_status">
+                                <option value="conformed" {% if booking.status == 'conformed' %}selected{% endif %}>Conformed</option>
+                                <option value="rejected" {% if booking.status == 'rejected' %}selected{% endif %}>Rejected</option>
+                                <option value="on_hold" {% if booking.status == 'on_hold' %}selected{% endif %}>On Hold</option>
+                                <option value="requested" {% if booking.status == 'requested' %}selected{% endif %}>Requested</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <li>No bookings available.</li>
+    {% endfor %}
+</ul>
+            </div>
+            <div class="">
+
+                <h2>Conformed Bookings</h2>
+
+                <div id="calendar"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: false,
+            events: function(start, end, timezone, callback) {
+                $.ajax({
+                    url: "/pandit/my_bookings",  // URL of the view returning JSON
+                    dataType: 'json',
+                    success: function(data) {
+                        callback(data); // Call the callback function with the data
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error fetching events:", error); // Log any error
+                    }
+                });
+            },
+            eventClick: function(event) {
+                if (event.description) {
+                    alert('Details: ' + event.description); // Show event details
+                }
+            }
+        });
+    });
+</script>
+
+ 
+    </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+
+    <!-- jQuery and FullCalendar JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="settings" role="tabpanel"
+                            aria-labelledby="settings-tab">
+                            <div class="wrapper_pandit_prof_edit">
+                                <div class="content_area">
+                            <div class="container form_area" >
+                                <br>
+                                <b >Add new service</b>
+
+                            <form method="POST" novalidate >
+                                {% csrf_token %}
+                                {{ form.as_p }}  <!-- Render form fields -->
+                                <div class="conatiner text-center ">
+                                <button type="submit"  style="border-radius: 4px;background: linear-gradient(90deg, #E4752D 0%, #FDB012 100%); padding: 10px 30px; border:1px solid #E4752D; ">Submit</button>
+                                 </div>
+                            </form>
+                        
+                            {% if form.errors %}
+                                <div class="errors">
+                                    <ul>
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <li>{{ field.label }}: {{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        {% for error in form.non_field_errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+           .headding{
+            padding: 40px 0px 20px 0px !important;
+           }
+            /* Custom styles for vertical tabs */
+            .nav-tabs {
+                flex-direction: column; /* Default to vertical tabs */
+                padding-bottom: 100px;
+                border-bottom: 0px;
+                font-family: 'Roboto';
+
+            }
+            .nav-tabs .nav-link{
+                color: #2A2A2A;
+                font-size: 17px !important;
+
+                font-family: Roboto;
+          
+                font-style: normal;
+                font-weight: 400;
+                line-height: 40px; /* 235.294% */
+                letter-spacing: 0.51px;
+            }
+            .nav-tabs .nav-link.active {
+                margin: 0 !important;
+                border: 0 !important;
+                border-top-left-radius: 0 !important; 
+                border-top-right-radius : 0 !important;
+                border-top-right-radius: 0 !important;
+                /* margin-bottom: calc(-1* var(--bs-nav-tabs-border-width)); */
+                /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+                /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+                /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+        
+                color: #E4752D;
+font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 40px; /* 190.476% */
+letter-spacing: 0.63px;
+
+                border-radius: 5px;
+border: 2px solid rgba(237, 237, 237, 0.00);
+background: rgba(243, 174, 158, 0.14);
+            }
+        
+            @media (max-width: 768px) {
+                .sitch_col{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .nav-tabs {
+                    flex-direction: row; /* Change to horizontal on mobile screens */
+                    flex-wrap: wrap; /* Allow wrapping of tabs */
+                    padding-bottom: 0px;
+
+             
+                    
+                }
+                .tab-content {
+                    margin-top: 20px; /* Add space above tab content on small screens */
+                }
+                .nav-tabs .nav-link {
+                    width: 100% !important;
+                    border-radius: 0 !important;
+
+                    border-radius: 2px;
+                    border: 2px solid rgba(237, 237, 237, 0.00);
+                    background: #FFF;
+                    font-size: 14px !important;
+                    line-height: 1rem !important;
+                    padding: 10px 5px;
+
+                }
+                .nav-tabs .nav-link.active{
+                
+                    border-radius: 0 !important;
+                    font-size: 14px !important;
+                    line-height: 1rem !important;
+                    
+                }
+                .nav-tabs .nav-link.active {
+                    margin: 0 !important;
+                    border: 0 !important;
+                    border-top-left-radius: 0 !important; */
+                    border-top-right-radius: 0 !important;
+                    /* margin-bottom: calc(-1* var(--bs-nav-tabs-border-width)); */
+                    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+                    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+                    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+                }
+            }
+
+
+
+            
+        </style>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+</div>
+
+<style>/* Colors */
+    :root {
+        --light-color: #ffffff;
+        --primary-color: #E4752D;
+    }
+    
+    .switch-button {
+        display: inline-block;
+        border-radius: 50px;
+        background-color: #e6e6e6; /* Approximation of darken(#ffffff, 30%) */
+        width: 107px; /* Updated width */
+        height: 49px; /* Updated height */
+        padding: 4px;
+        position: relative;
+        overflow: hidden;
+        vertical-align: middle;
+        float: right;
+    }
+    @media only screen and (max-width: 767px) {
+        .switch-button {
+            float: none;
+            justify-content: center;
+        }
+    }
+
+    
+    .switch-button input[type="checkbox"] {
+        display: none; /* Hide the checkbox */
+    }
+    
+    .switch-button span {
+        position: relative; /* Required for label positioning */
+    }
+    
+    .switch-button label {
+        border-radius: 50%;
+        background-color: var(--light-color);
+        margin: -3px -2px;
+        height: 47px; /* Adjusted to fit within the new height */
+        width: 47px;  /* Adjusted to fit within the new height */
+        z-index: 1;
+        display: inline-block;
+        cursor: pointer;
+        font-family: 'Roboto', sans-serif; /* Added font-family */
+        font-size: 12px; /* Added font-size */
+        font-style: normal; /* Added font-style */
+        font-weight: 500; /* Added font-weight */
+        line-height: 115.909%; /* Added line-height */
+        letter-spacing: 0.32px; /* Added letter-spacing */
+    }
+    
+    .switch-button label::before {
+        position: absolute;
+        font-size: 12px; /* Adjust to match the label's font size */
+        font-weight: 500;
+        z-index: 0;
+        content: "OFFLINE"; /* Initial label */
+        right: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 68px; /* Center text vertically */
+        top: -39.5px;
+        left: 47px;
+        text-align: right;
+        padding-right: 10px;
+        color: #000000; /* Change text color for better contrast */
+
+    }
+    
+    .switch-button input[type="checkbox"]:checked + span {
+        background-color: var(--primary-color);
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 4px;
+    }
+    
+    .switch-button input[type="checkbox"]:checked + span label {
+        float: right; /* Align label to the right when checked */
+    }
+    
+    .switch-button input[type="checkbox"]:checked + span label::before {
+        content: "ONLINE"; /* Change label when checked */
+        left: 0;
+        text-align: left;
+        padding-left: 10px;
+        top: -8px;
+    
+    }
+
+    
+    </style>
+
+
+  
+    
+
+    <script>
+        document.getElementById('item6').addEventListener('change', function() {
+            const statusText = document.getElementById('status-text');
+            const availability = this.checked ? 'available' : 'busy';
+            
+            console.log('Availability being sent:', availability); // Debugging log
+    
+            // Update the status text
+            if (statusText) { 
+                statusText.textContent = this.checked ? 'Available' : 'Busy'; 
+            }
+
+            
+    
+            fetch('/pandit/update-availability', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',  // Include CSRF token for security
+                },
+                body: JSON.stringify({ availability: availability }),
+            })
+            .then(response => {
+                // Handle non-JSON responses
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error(`Error: ${response.status} - ${text}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log('Availability updated to:', data.availability); // Debugging log
+                } else {
+                    console.error('Error updating availability:', data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+    
+
+<style>
+    .avatar-upload {
+        position: relative;
+        max-width: 100%;
+      }
+      
+      .avatar-upload .avatar-edit {
+        position: absolute;
+        right: 12px;  /* Keep it aligned to the right */
+        z-index: 1;
+        bottom: 10px;  /* Move it to the bottom */
+        top: auto;     /* Remove the top positioning */
+      }
+      
+      .avatar-upload .avatar-edit input {
+        display: none;
+      }
+      
+      .avatar-upload .avatar-edit input + label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+      }
+      
+      .avatar-upload .avatar-edit input + label:hover {
+        background: #f1f1f1;
+        border-color: #d6d6d6;
+      }
+      
+      .avatar-upload .avatar-edit input + label:after {
+        content: "\f040";
+        font-family: 'FontAwesome';
+        color: #E4752D;
+        position: absolute;
+        top: 4px;     /* Adjust the icon alignment */
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+      }
+      
+      .avatar-upload .avatar-preview {
+       
+        position: relative;
+        border-radius: 10px;
+        border: 6px solid #F8F8F8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        height: 120px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 95%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+      }
+      
+      .avatar-upload .avatar-preview > div {
+        width: 100%;
+        height: 100%;
+      
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      
+</style>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function() {
+        readURL(this);
+    });
+</script>
+
+<script>
+    document.getElementById('imageUpload').addEventListener('change', function(event) {
+        let formData = new FormData();
+        let fileInput = event.target;
+    
+        if (fileInput.files.length > 0) {
+            formData.append('profile_picture', fileInput.files[0]);
+    
+            // AJAX call to the Django view
+            fetch("{% url 'update_profile_picture' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'  // Include CSRF token for security
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Update the avatar preview with the new image URL
+                    document.getElementById('imagePreview').style.backgroundImage = `url(${data.profile_picture})`;
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+    </script>
+
+{% endblock main %}

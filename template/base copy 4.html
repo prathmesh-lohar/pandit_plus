@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+
+        {% load static %}
+
+        <!-- style -->
+        <link rel="stylesheet" href="{% static 'style/main.css' %}">
+        <!-- /style -->
+
+        <!-- boostrap -->
+        <link rel="stylesheet"
+            href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- /boostrap -->
+
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+        <!-- /fonts -->
+        <!-- font owsom -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- /font owsom -->
+
+        <!-- browser reload -->
+        {% load django_browser_reload %}
+        <!-- browser reload -->
+
+    </head>
+    <body>
+
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary px-2 py-2">
+            <div class="container-fluid">
+                <!-- Left aligned logo/brand -->
+                <div class="d-flex">
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'assets/svg/logo.svg' %}" alt>
+                        <span class="pandit">Pandit</span><span
+                            class="plus">Pluse</span>
+                        <p class="tagline">ONLINE PANDIT BOOKING</p>
+                    </a>
+
+                </div>
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Center items -->
+                <div class="collapse navbar-collapse justify-content-center"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page"
+                                href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Find your Pandit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Book a pandit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pooja Type</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login/Register</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"
+                                role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                        href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another
+                                        action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something
+                                        else here</a></li>
+                            </ul>
+                        </li> -->
+
+                    </ul>
+                </div>
+
+                <!-- Right aligned search form -->
+
+                <div class="d-flex item-right">
+
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M21.0002 21L16.6572 16.657M16.6572 16.657C17.4001 15.9141 17.9894 15.0321 18.3914 14.0615C18.7935 13.0909 19.0004 12.0506 19.0004 11C19.0004 9.94936 18.7935 8.90905 18.3914 7.93842C17.9894 6.96779 17.4001 6.08585 16.6572 5.34296C15.9143 4.60007 15.0324 4.01078 14.0618 3.60874C13.0911 3.20669 12.0508 2.99976 11.0002 2.99976C9.9496 2.99976 8.90929 3.20669 7.93866 3.60874C6.96803 4.01078 6.08609 4.60007 5.34321 5.34296C3.84288 6.84329 3 8.87818 3 11C3 13.1217 3.84288 15.1566 5.34321 16.657C6.84354 18.1573 8.87842 19.0002 11.0002 19.0002C13.122 19.0002 15.1569 18.1573 16.6572 16.657Z"
+                                        stroke="#2A2A2A" stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_1_602)">
+                                        <path
+                                            d="M21.8999 18.7534L21.6732 18.5534C21.0302 17.9804 20.4673 17.3234 19.9999 16.6C19.4894 15.6017 19.1834 14.5115 19.0999 13.3934V10.1C19.1043 8.34376 18.4672 6.64633 17.3084 5.32667C16.1495 4.007 14.5486 3.15592 12.8065 2.93335V2.07335C12.8065 1.83731 12.7128 1.61093 12.5459 1.44402C12.379 1.27712 12.1526 1.18335 11.9165 1.18335C11.6805 1.18335 11.4541 1.27712 11.2872 1.44402C11.1203 1.61093 11.0265 1.83731 11.0265 2.07335V2.94668C9.30004 3.1853 7.71852 4.04152 6.57489 5.35675C5.43126 6.67199 4.80302 8.35711 4.80654 10.1V13.3934C4.72304 14.5115 4.41706 15.6017 3.90654 16.6C3.44712 17.3216 2.89333 17.9785 2.25987 18.5534L2.0332 18.7534V20.6334H21.8999V18.7534Z"
+                                            fill="#2A2A2A" />
+                                        <path
+                                            d="M10.2129 21.3333C10.2714 21.7558 10.4808 22.143 10.8024 22.4232C11.1241 22.7035 11.5363 22.8578 11.9629 22.8578C12.3895 22.8578 12.8017 22.7035 13.1234 22.4232C13.445 22.143 13.6544 21.7558 13.7129 21.3333H10.2129Z"
+                                            fill="#2A2A2A" />
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_1_602">
+                                            <rect width="24" height="24"
+                                                fill="white" />
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><img height="40"
+                                    width="40"
+                                    src="{% static '/assets/svg/user_icon.svg'%}"
+                                    alt></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- /navbar -->
+
+        <!-- slider -->
+        <div class="slider_main">
+            <div id="carouselExampleControls" class="carousel slide"
+                data-bs-ride="carousel">
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button"
+                        data-bs-target="#carouselExampleControls"
+                        data-bs-slide-to="0" class="active" aria-current="true"
+                        aria-label="Slide 1"></button>
+                    <button type="button"
+                        data-bs-target="#carouselExampleControls"
+                        data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <!-- Add more buttons here for additional slides -->
+                </div>
+
+                <div class="carousel-inner">
+
+                    <!-- First Slide -->
+                    <div class="carousel-item active">
+                        <div class="slider_container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="texts">
+                                            <h1>Find your Right choice <br> here
+                                                from
+                                                most <br>
+                                                trusted</h1>
+                                            <p>Lorem ipsum dolor sit amet
+                                                consectetur. Vitae sed
+                                                sollicitudin
+                                                sodales magna consequat.
+                                                Fringilla
+                                                venenatis ultrices sit su
+                                                mi.</p>
+                                        </div>
+                                        <div class="btns">
+                                            <span class="btn_main">Book
+                                                Pandit</span>
+                                            <span class="mx-3 btn_main_outline">
+                                                <img
+                                                    src="{% static 'assets/svg/play_circle.svg' %}"
+                                                    alt> Play Video
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="slider_right_img mx-5">
+                                            <img
+                                                src="{% static 'assets/svg/pandit_show_app.svg' %}"
+                                                alt="pandit_showing_app">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+                    <!-- Second Slide (Repeat structure for more slides) -->
+                    <div class="carousel-item">
+                        <div class="slider_container container2">
+                            <div class="container-fluid">
+                                <div class="heding text-center">
+                                    <h1 class="h1">Steps to use Website</h1>
+                                </div>
+                                <div class="image text-center my-5">
+                                    <img
+                                        src="{% static 'assets/svg/secondsliderimg.svg' %}"
+                                        width="100%" alt="second_slider">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more slides here if necessary -->
+
+                </div>
+
+            </div>
+        </div>
+        
+
+        <!-- /slider -->
+
+        <!-- our services -->
+        <section class="services">
+
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Our Services
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+                <div class="grid">
+                    <div class="row">
+                        <div class="col-6  cards">
+                            <div class="card my-1">
+                                <div class="row">
+
+                                    <div class="col-3 ">
+                                        <div class="pandit_icon   text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-6  cards">
+                            <div class="card my-1">
+                                <div class="row">
+
+                                    <div class="col-3 ">
+                                        <div class="pandit_icon   text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-md-6  cards">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-md-3 ">
+                                        <div class="pandit_icon   text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6  cards">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-md-3 ">
+                                        <div class="pandit_icon   text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+
+                    </div>
+
+                    
+                    
+                </div>
+            </div>
+
+        </section>
+        <!-- our services -->
+
+        <!-- about us -->
+        <section class="about my-2">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        About Us
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+                <div class="container-fluid my-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img
+                                src="{% static 'assets/svg/pandit_with_mobile.svg' %}"
+                                alt="about_us">
+                        </div>
+                        <div class="col-md-8">
+                            <p class="p">Lorem ipsum odor amet, consectetuer
+                                adipiscing elit. Viverra id penatibus leo porta
+                                convallis gravida. Venenatis montes natoque sem
+                                etiam turpis semper. Parturient dui lobortis
+                                urna natoque lacinia conubia tellus faucibus
+                                vulputate. Dignissim nisl mattis viverra ex eget
+                                faucibus. Gravida fermentum a, felis arcu dolor
+                                dapibus. Egestas lectus magnis phasellus
+                                venenatis potenti tempor justo at. Feugiat elit
+                                facilisi convallis arcu senectus maecenas con.
+                                Ornare donec neque natoque et pharetra nisi?
+                                Cursus volutpat, Ornare donec .</p>
+
+                            <button class="btn btn_main ">Read More</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- /about us -->
+
+        <!-- how its works -->
+        <section class="how_works my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        How it works
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+                <div class="container_fluid text-center">
+                    <img src="{% static 'assets/svg/how_it_works.svg' %}" alt>
+                </div>
+            </div>
+        </section>
+        <!-- /how its works -->
+
+        <!-- pooja categoris -->
+        <section class="pooja_categories my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Pooja categoris
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+                <div class="card_grid container-fluid">
+                    <div class="row">
+                        
+                        <div class="col-md-4">
+                            <div class="container card p-0">
+                                <img src="{% static 'assets/jpg/pandit_avatar.jpg' %}"  alt="Avatar"
+                                    class="image" width="100%">
+                                    <button class="btn btn_main">Book Pandit</button>
+                                <div class="overlay">
+                                 
+                                    <h3>Home / Office Pooja</h3>
+                                    <ul>
+                                        <li>vashu santi Pooja</li>
+                                        <li>Grahapravesh Pooja</li>
+                                        <li>Marriage Pooja</li>
+                                        <li>Bhoomi santi Pooja</li>
+                                        <li>Bhoomi santi Pooja</li>
+                                        <li>Office openning  Pooja</li>
+                                    </ul>
+                                    <button class="btn btn_main_view">View Details</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="container card p-0">
+                                <img src="{% static 'assets/jpg/pandit_avatar.jpg' %}"  alt="Avatar"
+                                    class="image" width="100%">
+                                    <button class="btn btn_main">Book Pandit</button>
+                                <div class="overlay">
+                                 
+                                    <h3>Home / Office Pooja</h3>
+                                    <ul>
+                                        <li>vashu santi Pooja</li>
+                                        <li>Grahapravesh Pooja</li>
+                                        <li>Marriage Pooja</li>
+                                        <li>Bhoomi santi Pooja</li>
+                                        <li>Bhoomi santi Pooja</li>
+                                        <li>Office openning  Pooja</li>
+                                    </ul>
+                                    <button class="btn btn_main_view">View Details</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="container card p-0">
+                                <img src="{% static 'assets/jpg/pandit_avatar.jpg' %}"  alt="Avatar"
+                                    class="image" width="100%">
+                                    <button class="btn btn_main">Book Pandit</button>
+                                <div class="overlay">
+                                 
+                                    <h3>Home / Office Pooja</h3>
+                                    <ul>
+                                        <li>vashu santi Pooja</li>
+                                        <li>Grahapravesh Pooja</li>
+                                        <li>Marriage Pooja</li>
+                                        <li>Bhoomi santi Pooja</li>
+                                        <li>Bhoomi santi Pooja</li>
+                                        <li>Office openning  Pooja</li>
+                                    </ul>
+                                    <button class="btn btn_main_view">View Details</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                      
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="row">
+
+                </div>
+            </div>
+        </section>
+        <!-- /pooja categoris -->
+
+        <!-- testimonials -->
+        <section class="testinomials my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Testinomials
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div id="testimonialCarousel" class="carousel slide"
+                data-bs-ride="carousel">
+                <div class="carousel-inner mx-auto" style="max-width: 80%;">
+                    <!-- Centers the carousel and adjusts width -->
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-5">
+                                <img
+                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                    alt="testimonials" class="img_card">
+                            </div>
+                            <div class="col-7 testimonial-text">
+                                <div class="right_top_svg_quat">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="200" height="200"
+                                        viewBox="0 0 200 200" fill="none">
+                                        <path
+                                            d="M161.809 144.342C170.392 135.225 175 125 175 108.425C175 79.2584 154.534 53.1168 124.75 40.1917L117.309 51.6751C145.1 66.7084 150.534 86.2168 152.709 98.5167C148.234 96.2001 142.375 95.3917 136.625 95.9251C121.592 97.3167 109.742 109.658 109.742 125C109.742 132.736 112.815 140.154 118.285 145.624C123.755 151.094 131.173 154.167 138.909 154.167C147.85 154.167 156.409 150.083 161.809 144.342ZM78.4753 144.342C87.0587 135.225 91.667 125 91.667 108.425C91.667 79.2584 71.2003 53.1168 41.417 40.1917L33.9753 51.6751C61.767 66.7084 67.2003 86.2168 69.367 98.5167C64.892 96.2001 59.0337 95.3917 53.292 95.9251C38.2587 97.3084 26.417 109.65 26.417 125C26.417 132.736 29.4899 140.154 34.9597 145.624C40.4295 151.094 47.8482 154.167 55.5837 154.167C64.5253 154.167 73.0837 150.083 78.4837 144.342"
+                                            fill="white" />
+                                    </svg>
+                                </div>
+
+                                <div class="inside_para">
+
+                                    <p>
+
+                                        <svg style="width: 30px;"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="40" height="40"
+                                            viewBox="0 0 40 40" fill="none">
+                                            <path
+                                                d="M7.63846 28.8683C5.9218 27.0449 5.00013 24.9999 5.00013 21.6849C5.00013 15.8516 9.09346 10.6233 15.0501 8.03825L16.5385 10.3349C10.9801 13.3416 9.89346 17.2433 9.45846 19.7033C10.3535 19.2399 11.5251 19.0783 12.6751 19.1849C15.6818 19.4633 18.0518 21.9316 18.0518 24.9999C18.0518 26.547 17.4372 28.0307 16.3433 29.1247C15.2493 30.2187 13.7656 30.8333 12.2185 30.8333C10.4301 30.8333 8.71846 30.0166 7.63846 28.8683ZM24.3051 28.8683C22.5885 27.0449 21.6668 24.9999 21.6668 21.6849C21.6668 15.8516 25.7601 10.6233 31.7168 8.03825L33.2051 10.3349C27.6468 13.3416 26.5601 17.2433 26.1268 19.7033C27.0218 19.2399 28.1935 19.0783 29.3418 19.1849C32.3485 19.4616 34.7168 21.9299 34.7168 24.9999C34.7168 26.547 34.1022 28.0307 33.0083 29.1247C31.9143 30.2187 30.4306 30.8333 28.8835 30.8333C27.0951 30.8333 25.3835 30.0166 24.3035 28.8683"
+                                                fill="#E4752D" />
+                                        </svg>
+
+                                        <span class="mx-3 my-3">Lorem ipsum
+                                            dolor sit amet consectetur. Vitae
+                                            sed sollicitudin sodales magna
+                                            consequat. Fringilla venenatis
+                                            ultrices sit suscipit aliquet
+                                            vulputate mi. Eu amet at felis cum
+                                            pharetra. Sagittis turpis adipiscing
+                                            massa sed.Lorem ipsum dolor sit amet
+                                            consectetur
+                                        </span>
+                                        <svg class="mx-3" style="width: 30px;"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="40" height="40"
+                                            viewBox="0 0 40 40" fill="none">
+                                            <path
+                                                d="M32.3615 28.8683C34.0782 27.0449 34.9999 24.9999 34.9999 21.6849C34.9999 15.8516 30.9065 10.6233 24.9499 8.03825L23.4615 10.3349C29.0199 13.3416 30.1065 17.2433 30.5415 19.7033C29.6465 19.2399 28.4749 19.0783 27.3249 19.1849C24.3182 19.4633 21.9482 21.9316 21.9482 24.9999C21.9482 26.547 22.5628 28.0307 23.6567 29.1247C24.7507 30.2187 26.2344 30.8333 27.7815 30.8333C29.5699 30.8333 31.2815 30.0166 32.3615 28.8683ZM15.6949 28.8683C17.4115 27.0449 18.3332 24.9999 18.3332 21.6849C18.3332 15.8516 14.2399 10.6233 8.2832 8.03825L6.79487 10.3349C12.3532 13.3416 13.4399 17.2433 13.8732 19.7033C12.9782 19.2399 11.8065 19.0783 10.6582 19.1849C7.65154 19.4616 5.2832 21.9299 5.2832 24.9999C5.2832 26.547 5.89778 28.0307 6.99175 29.1247C8.08571 30.2187 9.56944 30.8333 11.1165 30.8333C12.9049 30.8333 14.6165 30.0166 15.6965 28.8683"
+                                                fill="#E4752D" />
+                                        </svg>
+                                    </p>
+
+                                    <div class="row">
+                                        <div class="user my-4 row">
+                                            <div class="col-2">
+                                                <img
+                                                    src="{% static 'assets/png/testi_user.png' %}"
+                                                    alt="user_testimonial">
+                                            </div>
+                                            <div class="col-8 my-2">
+                                                <p style="color: #626262;
+font-family: Roboto;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: 2px; /* 213.333% */
+letter-spacing: 0.45px;">ABC</p>
+                                                <span style="color: #A3A3A3;
+font-family: Roboto;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: 0px; /* 213.333% */
+letter-spacing: 0.45px;"> Abc Sirname</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bottom_left_svg_quat">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="200" height="200"
+                                        viewBox="0 0 200 200" fill="none">
+                                        <path
+                                            d="M38.1913 144.342C29.608 135.225 24.9997 125 24.9997 108.425C24.9997 79.2584 45.4663 53.1168 75.2497 40.1917L82.6913 51.6751C54.8997 66.7084 49.4663 86.2168 47.2913 98.5167C51.7663 96.2001 57.6247 95.3917 63.3747 95.9251C78.408 97.3167 90.258 109.658 90.258 125C90.258 132.736 87.1851 140.154 81.7153 145.624C76.2455 151.094 68.8268 154.167 61.0913 154.167C52.1497 154.167 43.5914 150.083 38.1913 144.342ZM121.525 144.342C112.941 135.225 108.333 125 108.333 108.425C108.333 79.2584 128.8 53.1168 158.583 40.1917L166.025 51.6751C138.233 66.7084 132.8 86.2168 130.633 98.5167C135.108 96.2001 140.966 95.3917 146.708 95.9251C161.741 97.3084 173.583 109.65 173.583 125C173.583 132.736 170.51 140.154 165.04 145.624C159.57 151.094 152.152 154.167 144.416 154.167C135.475 154.167 126.916 150.083 121.516 144.342"
+                                            fill="white" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item ">
+                        <div class="row">
+                            <div class="col-5">
+                                <img
+                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                    alt="testimonials" class="img_card">
+                            </div>
+                            <div class="col-7 testimonial-text">
+                                <div class="right_top_svg_quat">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="200" height="200"
+                                        viewBox="0 0 200 200" fill="none">
+                                        <path
+                                            d="M161.809 144.342C170.392 135.225 175 125 175 108.425C175 79.2584 154.534 53.1168 124.75 40.1917L117.309 51.6751C145.1 66.7084 150.534 86.2168 152.709 98.5167C148.234 96.2001 142.375 95.3917 136.625 95.9251C121.592 97.3167 109.742 109.658 109.742 125C109.742 132.736 112.815 140.154 118.285 145.624C123.755 151.094 131.173 154.167 138.909 154.167C147.85 154.167 156.409 150.083 161.809 144.342ZM78.4753 144.342C87.0587 135.225 91.667 125 91.667 108.425C91.667 79.2584 71.2003 53.1168 41.417 40.1917L33.9753 51.6751C61.767 66.7084 67.2003 86.2168 69.367 98.5167C64.892 96.2001 59.0337 95.3917 53.292 95.9251C38.2587 97.3084 26.417 109.65 26.417 125C26.417 132.736 29.4899 140.154 34.9597 145.624C40.4295 151.094 47.8482 154.167 55.5837 154.167C64.5253 154.167 73.0837 150.083 78.4837 144.342"
+                                            fill="white" />
+                                    </svg>
+                                </div>
+
+                                <div class="inside_para">
+
+                                    <p>
+
+                                        <svg style="width: 30px;"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="40" height="40"
+                                            viewBox="0 0 40 40" fill="none">
+                                            <path
+                                                d="M7.63846 28.8683C5.9218 27.0449 5.00013 24.9999 5.00013 21.6849C5.00013 15.8516 9.09346 10.6233 15.0501 8.03825L16.5385 10.3349C10.9801 13.3416 9.89346 17.2433 9.45846 19.7033C10.3535 19.2399 11.5251 19.0783 12.6751 19.1849C15.6818 19.4633 18.0518 21.9316 18.0518 24.9999C18.0518 26.547 17.4372 28.0307 16.3433 29.1247C15.2493 30.2187 13.7656 30.8333 12.2185 30.8333C10.4301 30.8333 8.71846 30.0166 7.63846 28.8683ZM24.3051 28.8683C22.5885 27.0449 21.6668 24.9999 21.6668 21.6849C21.6668 15.8516 25.7601 10.6233 31.7168 8.03825L33.2051 10.3349C27.6468 13.3416 26.5601 17.2433 26.1268 19.7033C27.0218 19.2399 28.1935 19.0783 29.3418 19.1849C32.3485 19.4616 34.7168 21.9299 34.7168 24.9999C34.7168 26.547 34.1022 28.0307 33.0083 29.1247C31.9143 30.2187 30.4306 30.8333 28.8835 30.8333C27.0951 30.8333 25.3835 30.0166 24.3035 28.8683"
+                                                fill="#E4752D" />
+                                        </svg>
+
+                                        <span class="mx-3 my-3">Lorem ipsum
+                                            dolor sit amet consectetur. Vitae
+                                            sed sollicitudin sodales magna
+                                            consequat. Fringilla venenatis
+                                            ultrices sit suscipit aliquet
+                                            vulputate mi. Eu amet at felis cum
+                                            pharetra. Sagittis turpis adipiscing
+                                            massa sed.Lorem ipsum dolor sit amet
+                                            consectetur
+                                        </span>
+                                        <svg class="mx-3" style="width: 30px;"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="40" height="40"
+                                            viewBox="0 0 40 40" fill="none">
+                                            <path
+                                                d="M32.3615 28.8683C34.0782 27.0449 34.9999 24.9999 34.9999 21.6849C34.9999 15.8516 30.9065 10.6233 24.9499 8.03825L23.4615 10.3349C29.0199 13.3416 30.1065 17.2433 30.5415 19.7033C29.6465 19.2399 28.4749 19.0783 27.3249 19.1849C24.3182 19.4633 21.9482 21.9316 21.9482 24.9999C21.9482 26.547 22.5628 28.0307 23.6567 29.1247C24.7507 30.2187 26.2344 30.8333 27.7815 30.8333C29.5699 30.8333 31.2815 30.0166 32.3615 28.8683ZM15.6949 28.8683C17.4115 27.0449 18.3332 24.9999 18.3332 21.6849C18.3332 15.8516 14.2399 10.6233 8.2832 8.03825L6.79487 10.3349C12.3532 13.3416 13.4399 17.2433 13.8732 19.7033C12.9782 19.2399 11.8065 19.0783 10.6582 19.1849C7.65154 19.4616 5.2832 21.9299 5.2832 24.9999C5.2832 26.547 5.89778 28.0307 6.99175 29.1247C8.08571 30.2187 9.56944 30.8333 11.1165 30.8333C12.9049 30.8333 14.6165 30.0166 15.6965 28.8683"
+                                                fill="#E4752D" />
+                                        </svg>
+                                    </p>
+
+                                    <div class="row">
+                                        <div class="user my-4 row">
+                                            <div class="col-2">
+                                                <img
+                                                    src="{% static 'assets/png/testi_user.png' %}"
+                                                    alt="user_testimonial">
+                                            </div>
+                                            <div class="col-8 my-2">
+                                                <p style="color: #626262;
+font-family: Roboto;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: 2px; /* 213.333% */
+letter-spacing: 0.45px;">ABC</p>
+                                                <span style="color: #A3A3A3;
+font-family: Roboto;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: 0px; /* 213.333% */
+letter-spacing: 0.45px;"> Abc Sirname</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bottom_left_svg_quat">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        width="200" height="200"
+                                        viewBox="0 0 200 200" fill="none">
+                                        <path
+                                            d="M38.1913 144.342C29.608 135.225 24.9997 125 24.9997 108.425C24.9997 79.2584 45.4663 53.1168 75.2497 40.1917L82.6913 51.6751C54.8997 66.7084 49.4663 86.2168 47.2913 98.5167C51.7663 96.2001 57.6247 95.3917 63.3747 95.9251C78.408 97.3167 90.258 109.658 90.258 125C90.258 132.736 87.1851 140.154 81.7153 145.624C76.2455 151.094 68.8268 154.167 61.0913 154.167C52.1497 154.167 43.5914 150.083 38.1913 144.342ZM121.525 144.342C112.941 135.225 108.333 125 108.333 108.425C108.333 79.2584 128.8 53.1168 158.583 40.1917L166.025 51.6751C138.233 66.7084 132.8 86.2168 130.633 98.5167C135.108 96.2001 140.966 95.3917 146.708 95.9251C161.741 97.3084 173.583 109.65 173.583 125C173.583 132.736 170.51 140.154 165.04 145.624C159.57 151.094 152.152 154.167 144.416 154.167C135.475 154.167 126.916 150.083 121.516 144.342"
+                                            fill="white" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more slides as needed -->
+                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button"
+                    data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <!-- <span class="carousel-control-prev-icon"
+                        aria-hidden="true"></span> -->
+                    <img src="{% static 'assets/svg/arrow_left_button.svg' %}"
+                        alt class="icon_image">
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                    data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <!-- <span class="carousel-control-next-icon"aria-hidden="true"></span>
+                      -->
+                    <img src="{% static 'assets/svg/arrow_right_button.svg' %}"
+                        alt>
+
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+        <!-- testimonials -->
+
+        <!-- share and erarn -->
+        <section class="share_earn text-center">
+            <h2 class="h2">
+                "Share and Earn: Unlock Multiple Rewards!"
+            </h2>
+            <div class="btns my-5">
+                <span class="btn_main">
+                    Book Pandit</span>
+                <span class="mx-3 btn_main_outline">
+                    <img
+                        src="{% static 'assets/svg/play_button_white.svg' %}"
+                        alt> Play Video
+                </span>
+            </div>
+
+        </section>
+        <!-- /share and erarn -->
+
+        <!-- contact us -->
+        <section class="contact_us my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Contact Us
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+
+                <div class="contact_grid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_location.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Office Address :</h4>
+                                <p>Lorem ipsum odor amet, consectetuer
+                                    adipiscing elit. Viverra id pena</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_mail.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Email Address :</h4>
+                                <p>abc@gmail.com</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_phone.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Phone Number :</h4>
+                                <p> 9100110088</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form_container">
+                    <div class="container">
+                        <form action class="form">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="name">Name :</label>
+                                    <input type="text" class="form-control"
+                                        name="name" placeholder="Your Name">
+                                </div>
+                                <div class="col">
+                                    <label for="email">Email :</label>
+                                    <input type="email" class="form-control"
+                                        name="email"
+                                        placeholder="Enter Your Email">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="pooja_category">Name of pooja
+                                        Category :</label>
+                                    <input type="text" class="form-control"
+                                        name="name_of_pooja_category"
+                                        placeholder="Name of pooja Category :">
+                                </div>
+
+                                <div class="col">
+                                    <label for="name_of_pooja">Name of Pooja
+                                        :</label>
+                                    <input type="text" class="form-control"
+                                        name="name_of_pooja"
+                                        placeholder="Name of Pooja ">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="location">Location :</label>
+                                    <input type="text" class="form-control"
+                                        name="location" placeholder="Location ">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="preferred_date">Preferred date
+                                        :</label>
+                                    <input type="date" class="form-control"
+                                        name="preferred_date">
+                                </div>
+
+                                <div class="col">
+                                    <label for="preferred_time">Preferred Time
+                                        :</label>
+                                    <input type="time" class="form-control"
+                                        name="preferred_date">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="mobile">Mobile :</label>
+                                    <input type="mobile" class="form-control"
+                                        name="mobile" placeholder="Mobile">
+                                </div>
+
+                            </div>
+                            <div class="text-center ">
+                                <button class="btn btn_main">
+                                    <span class="fa fa-paper-plane mx-1">
+                                    </span>
+                                    Send
+                                    Inquiry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+
+            </div>
+        </section>
+
+        <!-- /contact us -->
+
+        <!-- footer -->
+        <section class="footer">
+            <div class="container">
+                <div class="social_icons text-center">
+                    <div class="tree-images">
+                        <img src="{% static 'assets/svg/fb_icon.svg' %}"
+                            alt="facebook">
+                        <img src="{% static 'assets/svg/twitter_icon.svg' %}"
+                            alt="Twitter">
+                        <img src="{% static 'assets/svg/youtube_icon.svg' %}"
+                            alt="Youtube">
+                    </div>
+
+                </div>
+                <div class="contact">
+                    <div class="row text-center">
+                        <div class="col-md-2"><span
+                                class="fa fa-envelope mx-3"></span> <span
+                                class="value">abc@gmail.com</span></div>
+                        <div class="col-md-8"><span
+                                class="fa fa-map-marker mx-3"></span> <span
+                                class="value">Lorem ipsum dolor sit amet
+                                consectetur. Vitae sed sollicitudin sodales
+                                magna consequat.</span></div>
+                        <div class="col-md-2"><span
+                                class="fa fa-phone mx-3"></span> <span
+                                class="value">+91 9876543210</span></div>
+
+                    </div>
+                </div>
+                <div class="copy_right text-center">
+                    <span>@ 2024 copyrighted by Panditji+.All Right
+                        Reserved.</span>
+                </div>
+            </div>
+        </section>
+        <!-- /footer -->
+        
+
+        {% django_browser_reload_script %}
+    </body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+
+        {% load static %}
+
+        <!-- style -->
+        <link rel="stylesheet" href="{% static 'style/main.css' %}">
+        <!-- /style -->
+
+        <!-- boostrap -->
+        <link rel="stylesheet"
+            href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- /boostrap -->
+
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+        <!-- /fonts -->
+        <!-- font owsom -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- /font owsom -->
+
+        <!-- browser reload -->
+        {% load django_browser_reload %}
+        <!-- browser reload -->
+
+    </head>
+    <body>
+
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary px-2 py-2">
+            <div class="container-fluid">
+                <!-- Left aligned logo/brand -->
+                <div class="d-flex">
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'assets/svg/logo.svg' %}" alt>
+                        <span class="pandit">Pandit</span><span
+                            class="plus">Pluse</span>
+                        <p class="tagline">ONLINE PANDIT BOOKING</p>
+                    </a>
+
+                </div>
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Center items -->
+                <div class="collapse navbar-collapse justify-content-center"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page"
+                                href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Find your Pandit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Book a pandit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pooja Type</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login/Register</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"
+                                role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item"
+                                        href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another
+                                        action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something
+                                        else here</a></li>
+                            </ul>
+                        </li> -->
+
+                    </ul>
+                </div>
+
+                <!-- Right aligned search form -->
+
+                <div class="d-flex item-right">
+
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M21.0002 21L16.6572 16.657M16.6572 16.657C17.4001 15.9141 17.9894 15.0321 18.3914 14.0615C18.7935 13.0909 19.0004 12.0506 19.0004 11C19.0004 9.94936 18.7935 8.90905 18.3914 7.93842C17.9894 6.96779 17.4001 6.08585 16.6572 5.34296C15.9143 4.60007 15.0324 4.01078 14.0618 3.60874C13.0911 3.20669 12.0508 2.99976 11.0002 2.99976C9.9496 2.99976 8.90929 3.20669 7.93866 3.60874C6.96803 4.01078 6.08609 4.60007 5.34321 5.34296C3.84288 6.84329 3 8.87818 3 11C3 13.1217 3.84288 15.1566 5.34321 16.657C6.84354 18.1573 8.87842 19.0002 11.0002 19.0002C13.122 19.0002 15.1569 18.1573 16.6572 16.657Z"
+                                        stroke="#2A2A2A" stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <g clip-path="url(#clip0_1_602)">
+                                        <path
+                                            d="M21.8999 18.7534L21.6732 18.5534C21.0302 17.9804 20.4673 17.3234 19.9999 16.6C19.4894 15.6017 19.1834 14.5115 19.0999 13.3934V10.1C19.1043 8.34376 18.4672 6.64633 17.3084 5.32667C16.1495 4.007 14.5486 3.15592 12.8065 2.93335V2.07335C12.8065 1.83731 12.7128 1.61093 12.5459 1.44402C12.379 1.27712 12.1526 1.18335 11.9165 1.18335C11.6805 1.18335 11.4541 1.27712 11.2872 1.44402C11.1203 1.61093 11.0265 1.83731 11.0265 2.07335V2.94668C9.30004 3.1853 7.71852 4.04152 6.57489 5.35675C5.43126 6.67199 4.80302 8.35711 4.80654 10.1V13.3934C4.72304 14.5115 4.41706 15.6017 3.90654 16.6C3.44712 17.3216 2.89333 17.9785 2.25987 18.5534L2.0332 18.7534V20.6334H21.8999V18.7534Z"
+                                            fill="#2A2A2A" />
+                                        <path
+                                            d="M10.2129 21.3333C10.2714 21.7558 10.4808 22.143 10.8024 22.4232C11.1241 22.7035 11.5363 22.8578 11.9629 22.8578C12.3895 22.8578 12.8017 22.7035 13.1234 22.4232C13.445 22.143 13.6544 21.7558 13.7129 21.3333H10.2129Z"
+                                            fill="#2A2A2A" />
+                                    </g>
+                                    <defs>
+                                        <clippath id="clip0_1_602">
+                                            <rect width="24" height="24"
+                                                fill="white" />
+                                        </clippath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><img height="40"
+                                    width="40"
+                                    src="{% static '/assets/svg/user_icon.svg'%}"
+                                    alt></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- /navbar -->
+
+        <!-- slider -->
+        <div id="carouselExampleControls" class="carousel slide"
+            data-bs-ride="carousel">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <!-- Add more buttons here for additional slides -->
+            </div>
+
+            <div class="carousel-inner">
+
+                <!-- First Slide -->
+                <div class="carousel-item active">
+                    <div class="slider_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="texts">
+                                        <h1>Find your Right choice <br> here
+                                            from
+                                            most <br>
+                                            trusted</h1>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                    <div class="btns my-5">
+                                        <span class="btn_main">Book
+                                            Pandit</span>
+                                        <span class="mx-3 btn_main_outline">
+                                            <img
+                                                src="{% static 'assets/svg/play_circle.svg' %}"
+                                                alt> Play Video
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="slider_right_img mx-5">
+                                        <img
+                                            src="{% static 'assets/svg/pandit_show_app.svg' %}"
+                                            alt="pandit_showing_app">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Slide (Repeat structure for more slides) -->
+                <div class="carousel-item">
+                    <div class="slider_container container2">
+                        <div class="container-fluid">
+                            <div class="heding text-center">
+                                <h1 class="h1">Steps to use Website</h1>
+                            </div>
+                            <div class="image text-center my-5">
+                                <img
+                                    src="{% static 'assets/svg/secondsliderimg.svg' %}"
+                                    width="100%" alt="second_slider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more slides here if necessary -->
+
+            </div>
+
+        </div>
+
+        <!-- /slider -->
+
+        <!-- our services -->
+        <section class="services">
+
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Our Services
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+                <div class="grid">
+                    <div class="row">
+                        <div class="col-md-6  cards">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-3 ">
+                                        <div class="pandit_icon   text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6  cards">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-3">
+                                        <div class="pandit_icon text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-md-6  cards">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-3">
+                                        <div class="pandit_icon  text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6  cards">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-3">
+                                        <div class="pandit_icon text-center">
+                                            <img
+                                                src="{% static 'assets/svg/young_pandit.svg' %}"
+                                                alt="pandit_services">
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <h3>Pandit Pooja service</h3>
+                                        <p>Lorem ipsum dolor sit amet
+                                            consectetur. Vitae sed sollicitudin
+                                            sodales magna consequat. Fringilla
+                                            venenatis ultrices sit su mi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- our services -->
+
+        <!-- about us -->
+        <section class="about my-2">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        About Us
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+                <div class="container-fluid my-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img
+                                src="{% static 'assets/svg/pandit_with_mobile.svg' %}"
+                                alt="about_us">
+                        </div>
+                        <div class="col-md-8">
+                            <p class="p">Lorem ipsum odor amet, consectetuer
+                                adipiscing elit. Viverra id penatibus leo porta
+                                convallis gravida. Venenatis montes natoque sem
+                                etiam turpis semper. Parturient dui lobortis
+                                urna natoque lacinia conubia tellus faucibus
+                                vulputate. Dignissim nisl mattis viverra ex eget
+                                faucibus. Gravida fermentum a, felis arcu dolor
+                                dapibus. Egestas lectus magnis phasellus
+                                venenatis potenti tempor justo at. Feugiat elit
+                                facilisi convallis arcu senectus maecenas con.
+                                Ornare donec neque natoque et pharetra nisi?
+                                Cursus volutpat, Ornare donec .</p>
+
+                            <button class="btn btn_main ">Read More</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- /about us -->
+
+        <!-- how its works -->
+        <section class="how_works my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        How it works
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+            </div>
+        </section>
+        <!-- /how its works -->
+
+        <!-- pooja categoris -->
+        <section class="pooja_categories my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Pooja categoris
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="row">
+
+                </div>
+            </div>
+        </section>
+        <!-- /pooja categoris -->
+
+        <!-- testimonials -->
+        <section class="testinomials my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Testinomials
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+               
+            </div>
+
+            <div class="container">
+                <div class="inner_container">
+                    <div class="row">
+                        <div class="col-5">
+                            <img src="{% static 'assets/svg/pandit_for_testimonial.svg' %}" alt="testimonials">
+                        </div>
+                        <div class="col-7">"Lorem ipsum dolor sit amet consectetur. Vitae sed sollicitudin sodales magna consequat. Fringilla venenatis ultrices sit suscipit aliquet vulputate mi. Eu amet at felis cum pharetra. Sagittis turpis adipiscing massa sed.Lorem ipsum dolor sit amet consectetur. Vitae sed sollicitudin sodales magna consequat. Fringilla venenatis ultrices sit suscipit aliquet vulputate mi."</div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="left_btn float-start"><button><</button></div>
+                    <div class="right_btn float-end"><button>></button></div>
+            </div>
+        </section>
+        <!-- testimonials -->
+
+        <!-- share and erarn -->
+        <section class="share_earn text-center">
+            <h2 class="h2">
+                "Share and Earn: Unlock Multiple Rewards!"
+            </h2>
+            <div class="btns my-5">
+                <span class="btn_main">
+                    Book Pandit</span>
+                <span class="mx-3 btn_main_outline">
+                    <img
+                        src="{% static 'assets/svg/play_button_white.svg' %}"
+                        alt> Play Video
+                </span>
+            </div>
+
+        </section>
+        <!-- /share and erarn -->
+
+        <!-- contact us -->
+        <section class="contact_us my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Contact Us
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+
+                <div class="contact_grid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_location.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Office Address :</h4>
+                                <p>Lorem ipsum odor amet, consectetuer
+                                    adipiscing elit. Viverra id pena</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_mail.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Email Address :</h4>
+                                <p>abc@gmail.com</p>
+                            </div>
+
+                            <div class="col-md-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_phone.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Phone Number :</h4>
+                                <p> 9100110088</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form_container">
+                    <div class="container">
+                        <form action class="form">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="name">Name :</label>
+                                    <input type="text" class="form-control"
+                                        name="name" placeholder="Your Name">
+                                </div>
+                                <div class="col">
+                                    <label for="email">Email :</label>
+                                    <input type="email" class="form-control"
+                                        name="email"
+                                        placeholder="Enter Your Email">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="pooja_category">Name of pooja
+                                        Category :</label>
+                                    <input type="text" class="form-control"
+                                        name="name_of_pooja_category"
+                                        placeholder="Name of pooja Category :">
+                                </div>
+
+                                <div class="col">
+                                    <label for="name_of_pooja">Name of Pooja
+                                        :</label>
+                                    <input type="text" class="form-control"
+                                        name="name_of_pooja"
+                                        placeholder="Name of Pooja ">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="location">Location :</label>
+                                    <input type="text" class="form-control"
+                                        name="location" placeholder="Location ">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="preferred_date">Preferred date
+                                        :</label>
+                                    <input type="date" class="form-control"
+                                        name="preferred_date">
+                                </div>
+
+                                <div class="col">
+                                    <label for="preferred_time">Preferred Time
+                                        :</label>
+                                    <input type="time" class="form-control"
+                                        name="preferred_date">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="mobile">Mobile :</label>
+                                    <input type="mobile" class="form-control"
+                                        name="mobile" placeholder="Mobile">
+                                </div>
+
+                            </div>
+                            <div class="text-center ">
+                                <button class="btn btn_main">
+                                    <span class="fa fa-paper-plane mx-1"> </span>
+                                    Send
+                                    Inquiry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+
+            </div>
+        </section>
+
+        <!-- /contact us -->
+
+        <!-- footer -->
+         <section class="footer">
+            <div class="container">
+                <div class="social_icons text-center">
+                    <div class="tree-images">
+                        <img src="{% static 'assets/svg/fb_icon.svg' %}" alt="facebook">
+                        <img src="{% static 'assets/svg/twitter_icon.svg' %}" alt="Twitter">
+                        <img src="{% static 'assets/svg/youtube_icon.svg' %}" alt="Youtube">
+                    </div>
+                    
+                </div>
+                <div class="contact">
+                    <div class="row text-center">
+                        <div class="col-md-2"><span class="fa fa-envelope mx-3"></span> <span class="value">abc@gmail.com</span></div>
+                        <div class="col-md-8"><span class="fa fa-map-marker mx-3"></span> <span class="value">Lorem ipsum dolor sit amet consectetur. Vitae sed sollicitudin sodales magna consequat.</span></div>
+                        <div class="col-md-2"><span class="fa fa-phone mx-3"></span> <span class="value">+91 9876543210</span></div>
+                       
+                    </div>
+                </div>
+                <div class="copy_right text-center">
+                    <span>@ 2024 copyrighted by Panditji+.All Right Reserved.</span>
+                </div>
+            </div>
+         </section>
+        <!-- /footer -->
+
+        {% django_browser_reload_script %}
+    </body>
+</html>

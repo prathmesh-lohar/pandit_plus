@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}pandit plus | online pandit booking website{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'style/pages.css' %}">
+{% endblock link %}
+
+{% block main %}
+
+<div class="wrappped_body">
+
+    <section class="headding text-center">
+        <h1>Find Your Pandit</h1>
+    </section>
+
+    <div class="content container">
+        <section class="search_form">
+            <div class="container">
+                <form method="GET" action="{% url 'find_pandit' %}">
+                    <div class="form">
+                        <div class="row">
+                            <div class="col-md-3 my-1 my-0">
+                                <input type="text" placeholder="Location"
+                                    name="location" class="form-control" >
+                            </div>
+                
+                            <div class="col-md-3 my-1 my-0">
+                                <select name="pooja_type" id="pooja_type" class="form-control" required>
+                                    <option disabled selected>Select Pooja Types</option>
+                                    {% for pt in services %}
+                                    <option value="{{ pt.id }}">{{ pt.service_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                
+                            <div class="col-md-3 my-1 my-0" required>
+                                <select name="budget" id class="form-control">
+                                    <option disabled selected>Select Your Budget</option>
+                                    <option value="500">Bellow 500</option>
+                                    <option value="500-1000">500 to 1000</option>
+                                    <option value="1000-2000">1000 to 2000</option>
+                                    <option value="3000-5000">3000 to 5000</option>
+                                </select>
+                            </div>
+                
+                            <div class="col-md-3 my-1 my-0">
+                                <button type="submit" class="btn btn-search_submit w-100">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </section>
+
+        <section class="pandit_cards">
+            <div class="row">
+                {% if pandit_services %}
+                    {% for item in pandit_services %}
+
+                    <div class="col-6 col-md-3">
+                        <div class="card">
+                            <img src="{% if item.pandit.profile_picture  %}{{ item.pandit.profile_picture.url }}{% else %}{% static 'assets/png/no_dp.png' %}{% endif %}" class="card-img-top" alt="...">
+                            <div class="card-body my-2">
+                                <h5 class="card-title">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                                                <path d="M8.49984 2.65625C7.79536 2.65625 7.11973 2.9361 6.62159 3.43425C6.12344 3.93239 5.84359 4.60802 5.84359 5.3125C5.84359 6.01698 6.12344 6.69261 6.62159 7.19075C7.11973 7.6889 7.79536 7.96875 8.49984 7.96875C9.20432 7.96875 9.87995 7.6889 10.3781 7.19075C10.8762 6.69261 11.1561 6.01698 11.1561 5.3125C11.1561 4.60802 10.8762 3.93239 10.3781 3.43425C9.87995 2.9361 9.20432 2.65625 8.49984 2.65625ZM5.6665 9.38542C4.96202 9.38542 4.2864 9.66527 3.78825 10.1634C3.29011 10.6616 3.01025 11.3372 3.01025 12.0417V12.8832C3.01025 13.4173 3.397 13.872 3.924 13.9577C6.95425 14.4528 10.0454 14.4528 13.0757 13.9577C13.3305 13.9158 13.5623 13.7848 13.7296 13.588C13.8969 13.3912 13.989 13.1415 13.9894 12.8832V12.0417C13.9894 11.3372 13.7096 10.6616 13.2114 10.1634C12.7133 9.66527 12.0377 9.38542 11.3332 9.38542H11.0923C10.9601 9.38589 10.8317 9.4062 10.707 9.44633L10.0936 9.64679C9.05798 9.98488 7.94169 9.98488 6.90609 9.64679L6.29267 9.44633C6.16834 9.40645 6.03862 9.38591 5.90805 9.38542H5.6665Z" fill="#E4752D"/>
+                                              </svg>
+                                        </div>
+                                        <div class="col">
+                                            <span class="header-style">{{ item.pandit.name }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1 mt-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                                <path d="M2 10.5C1.725 10.5 1.48967 10.4022 1.294 10.2065C1.09833 10.0108 1.00033 9.77533 1 9.5V4C1 3.725 1.098 3.48967 1.294 3.294C1.49 3.09833 1.72533 3.00033 2 3H4V2C4 1.725 4.098 1.48967 4.294 1.294C4.49 1.09833 4.72533 1.00033 5 1H7C7.275 1 7.5105 1.098 7.7065 1.294C7.9025 1.49 8.00033 1.72533 8 2V3H10C10.275 3 10.5105 3.098 10.7065 3.294C10.9025 3.49 11.0003 3.72533 11 4V9.5C11 9.775 10.9022 10.0105 10.7065 10.2065C10.5108 10.4025 10.2753 10.5003 10 10.5H2ZM5 3H7V2H5V3Z" fill="#E4752D"/>
+                                              </svg>
+                                        </div>
+                                        <div class="col mt-2">
+                                            <p> Exp. {{ item.pandit.Exp }} yrs</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                                                <path d="M7.5 7.1875C7.0856 7.1875 6.68817 7.02288 6.39515 6.72985C6.10212 6.43683 5.9375 6.0394 5.9375 5.625C5.9375 5.2106 6.10212 4.81317 6.39515 4.52015C6.68817 4.22712 7.0856 4.0625 7.5 4.0625C7.9144 4.0625 8.31183 4.22712 8.60485 4.52015C8.89788 4.81317 9.0625 5.2106 9.0625 5.625C9.0625 5.83019 9.02208 6.03337 8.94356 6.22294C8.86504 6.41251 8.74995 6.58476 8.60485 6.72985C8.45976 6.87495 8.28751 6.99004 8.09794 7.06856C7.90837 7.14708 7.70519 7.1875 7.5 7.1875ZM7.5 1.25C6.33968 1.25 5.22688 1.71094 4.40641 2.53141C3.58594 3.35188 3.125 4.46468 3.125 5.625C3.125 8.90625 7.5 13.75 7.5 13.75C7.5 13.75 11.875 8.90625 11.875 5.625C11.875 4.46468 11.4141 3.35188 10.5936 2.53141C9.77312 1.71094 8.66032 1.25 7.5 1.25Z" fill="#E4752D"/>
+                                              </svg>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">{{ item.pandit.address }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- <p>Service Offered:</p> -->
+                                    <p class="mt-2 mb-0 mx-2">{{ item.service.service.service_name }} - ₹{{ item.service.rate }} ({{ item.service.get_rate_type_display }})</p>
+
+                                    
+
+                                    <div class="row text-center btn_row">
+                                        <a href="/view_pandit/{{item.pandit.pandit_id.id}}/{{item.service.id}}" class="btn btn_main_global">Book Pandit</a>
+                                    </div>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                        {% comment %} <!-- <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img src="{{ item.pandit.profile_picture.url }}" class="card-img-top" alt="{{ item.pandit.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ item.pandit.name }}</h5>
+                                    <p class="card-text">Location: {{ item.pandit.address }}</p>
+                                    <p class="card-text">Experience: {{ item.pandit.Exp }} years</p>
+                                    <h6>Service Offered:</h6>
+                                    <p>{{ item.service.service.service_name }} - ₹{{ item.service.rate }} ({{ item.service.get_rate_type_display }})</p>
+                                    <a href="/book_pandit/{{item.pandit.pandit_id.id}}" class="btn btn-primary">Book Now</a>
+                                </div>
+                            </div>
+                        </div> --> {% endcomment %}
+                    {% endfor %}
+                {% else %}
+                    <p>No Pandits available at this time.</p>
+                {% endif %}
+            </div>
+        </section>
+        
+
+    </div>
+    
+
+    <div class="view_more_container container text-center">
+        <span>View More</span>
+    </div>
+</div>
+
+{% endblock main %}

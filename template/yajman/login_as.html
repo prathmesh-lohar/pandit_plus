@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}{% endblock title %}
+
+{% block main %}
+
+<div class="container login-container">
+    <div class="row w-100 justify-content-around">
+        <!-- Yajman Login Card -->
+        <div class="col-md-5">
+            <a href="/login" class="card-link">
+                <div class="login-card">
+                    <div class="card-icon">🙏</div>
+                    <h3 class="login-header">Yajman Login</h3>
+                    <p>Click here to login as a Yajman.</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Pandit Login Card -->
+        <div class="col-md-5">
+            <a href="/pandit/login" class="card-link">
+                <div class="login-card">
+                    <div class="card-icon">🕉️</div>
+                    <h3 class="login-header">Pandit Login</h3>
+                    <p>Click here to login as a Pandit.</p>
+                </div>
+            </a>
+        </div>
+        
+      
+
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .login-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 70vh;
+    }
+    .login-card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    .login-card:hover {
+        transform: scale(1.05);
+    }
+    .login-header {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .card-icon {
+        font-size: 50px;
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+</style>
+
+{% endblock main %}
+

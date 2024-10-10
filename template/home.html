@@ -1,0 +1,760 @@
+{% extends "base.html" %}
+{% block title %}pandit pluse | online pandit booking website{% endblock title %}
+{% block link %}{% endblock link %}
+{% load static %}
+{% block main %}
+
+ <!-- slider -->
+ <div class="slider_main">
+    <div id="carouselExampleControls" class="carousel slide"
+        data-bs-ride="carousel">
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+            <button type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <!-- Add more buttons here for additional slides -->
+        </div>
+
+        <div class="carousel-inner">
+
+            <!-- First Slide -->
+            <div class="carousel-item active">
+                <div class="slider_container">
+                    <div class="container">
+                        <div class="row">
+                            <div
+                                class="col-12 col-md-7 text-center text-md-start">
+                                <div
+                                    class="slider_right_img_mob text-center">
+                                    <img
+                                        src="{% static 'assets/svg/pandit_show_app.svg' %}"
+                                        alt="pandit_showing_app">
+                                </div>
+                                <div class="texts">
+
+                                    <h1>Find your Right choice <br> here
+                                        from
+                                        most <br>
+                                        trusted</h1>
+                                    <p>Lorem ipsum dolor sit amet
+                                        consectetur. Vitae sed
+                                        sollicitudin
+                                        sodales magna consequat.
+                                        Fringilla
+                                        venenatis ultrices sit su
+                                        mi.</p>
+                                </div>
+                                <div class="btns">
+                                    <span class="btn_main">Book
+                                        Pandit</span>
+                                    <span class="mx-3 btn_main_outline">
+                                        <img
+                                            src="{% static 'assets/svg/play_circle.svg' %}"
+                                            alt> Play Video
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="slider_right_img mx-5">
+                                    <img
+                                        src="{% static 'assets/svg/pandit_show_app.svg' %}"
+                                        alt="pandit_showing_app">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Slide (Repeat structure for more slides) -->
+            <div class="carousel-item">
+                <div class="slider_container container2">
+                    <div class="container-fluid">
+                        <div class="heding text-center">
+                            <h1 class="h1">Steps to use Website</h1>
+                        </div>
+                        <div class="image text-center my-5">
+                            <img
+                                src="{% static 'assets/svg/secondsliderimg.svg' %}"
+                                width="100%" alt="second_slider">
+                        </div>
+                        <div class="image text-center my-5 for_mob">
+                            <img
+                                src="{% static 'assets/svg/secondsliderimg_mob.svg' %}"
+                                width="100%" alt="second_slider">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more slides here if necessary -->
+
+        </div>
+
+    </div>
+</div>
+
+<!-- /slider -->
+
+<!-- our services -->
+<section class="services">
+
+    <div class="container">
+        <div class="heading text-center">
+            <h2 class="h2">
+                Our Services
+                <br>
+                <svg style="margin-top: -25px;"
+                    xmlns="http://www.w3.org/2000/svg" width="210"
+                    height="2" viewBox="0 0 322 2" fill="none">
+                    <path d="M1 1L320.07 1"
+                        stroke="url(#paint0_linear_1_433)"
+                        stroke-width="2" stroke-linecap="round" />
+                    <defs>
+                        <lineargradient id="paint0_linear_1_433" x1="1"
+                            y1="2.5" x2="320.07" y2="2.5"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#E4752D" />
+                            <stop offset="1" stop-color="#FDB012" />
+                        </lineargradient>
+                    </defs>
+                </svg>
+            </h2>
+
+        </div>
+        <div class="grid">
+            <div class="row">
+                <div class="col-md-6  cards desktop_card">
+                    <div class="card my-1">
+                        <div class="row">
+
+                            <div class="col-3 ">
+                                <div class="pandit_icon   text-center">
+                                    <img
+                                        src="{% static 'assets/svg/young_pandit.svg' %}"
+                                        alt="pandit_services">
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <h3>Pandit Pooja service</h3>
+                                <p>Lorem ipsum dolor sit amet
+                                    consectetur. Vitae sed sollicitudin
+                                    sodales magna consequat. Fringilla
+                                    venenatis ultrices sit su mi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6  cards desktop_card">
+                    <div class="card my-1">
+                        <div class="row">
+
+                            <div class="col-3 ">
+                                <div class="pandit_icon   text-center">
+                                    <img
+                                        src="{% static 'assets/svg/young_pandit.svg' %}"
+                                        alt="pandit_services">
+                                </div>
+                            </div>
+                            <div class="col-9">
+                                <h3>Pandit Pooja service</h3>
+                                <p>Lorem ipsum dolor sit amet
+                                    consectetur. Vitae sed sollicitudin
+                                    sodales magna consequat. Fringilla
+                                    venenatis ultrices sit su mi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- our services -->
+
+   <!-- about us -->
+   <section class="about my-2" id="abou_us">
+    <div class="container-fluid">
+        <div class="heading text-center">
+            <h2 class="h2">
+                About Us
+                <br>
+                <svg style="margin-top: -25px;"
+                    xmlns="http://www.w3.org/2000/svg" width="210"
+                    height="2" viewBox="0 0 322 2" fill="none">
+                    <path d="M1 1L320.07 1"
+                        stroke="url(#paint0_linear_1_433)"
+                        stroke-width="2" stroke-linecap="round" />
+                    <defs>
+                        <lineargradient id="paint0_linear_1_433" x1="1"
+                            y1="2.5" x2="320.07" y2="2.5"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#E4752D" />
+                            <stop offset="1" stop-color="#FDB012" />
+                        </lineargradient>
+                    </defs>
+                </svg>
+            </h2>
+
+        </div>
+        <div class="container-fluid my-4 text-center text-md-start">
+            <div class="row">
+                <div class="col-md-4">
+                    <img
+                        src="{% static 'assets/svg/pandit_with_mobile.svg' %}"
+                        alt="about_us">
+                </div>
+                <div class="col-md-8 text-center text-md-start">
+                    <p class="p">Lorem ipsum odor amet, consectetuer
+                        adipiscing elit. Viverra id penatibus leo porta
+                        convallis gravida. Venenatis montes natoque sem
+                        etiam turpis semper. Parturient dui lobortis
+                        urna natoque lacinia conubia tellus faucibus
+                        vulputate. Dignissim nisl mattis viverra ex eget
+                        faucibus. Gravida fermentum a, felis arcu dolor
+                        dapibus. Egestas lectus magnis phasellus
+                        venenatis potenti tempor justo at. Feugiat elit
+                        facilisi convallis arcu senectus maecenas con.
+                        Ornare donec neque natoque et pharetra nisi?
+                        Cursus volutpat, Ornare donec .</p>
+
+                    <button class="btn btn_main ">Read More</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- /about us -->
+
+<!-- how its works -->
+<section class="how_works my-5">
+    <div class="container-fluid">
+        <div class="heading text-center">
+            <h2 class="h2">
+                How it works
+                <br>
+                <svg style="margin-top: -25px;"
+                    xmlns="http://www.w3.org/2000/svg" width="210"
+                    height="2" viewBox="0 0 322 2" fill="none">
+                    <path d="M1 1L320.07 1"
+                        stroke="url(#paint0_linear_1_433)"
+                        stroke-width="2" stroke-linecap="round" />
+                    <defs>
+                        <lineargradient id="paint0_linear_1_433" x1="1"
+                            y1="2.5" x2="320.07" y2="2.5"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#E4752D" />
+                            <stop offset="1" stop-color="#FDB012" />
+                        </lineargradient>
+                    </defs>
+                </svg>
+            </h2>
+
+        </div>
+        <div class="container_fluid text-center">
+            <img src="{% static 'assets/svg/how_it_works.svg' %}" alt>
+        </div>
+    </div>
+</section>
+<!-- /how its works -->
+
+<!-- pooja categoris -->
+<section class="pooja_categories my-5" id="pooja_types">
+    <div class="container-fluid">
+        <div class="heading text-center">
+            <h2 class="h2">
+                Pooja categoris
+                <br>
+                <svg style="margin-top: -25px;"
+                    xmlns="http://www.w3.org/2000/svg" width="210"
+                    height="2" viewBox="0 0 322 2" fill="none">
+                    <path d="M1 1L320.07 1"
+                        stroke="url(#paint0_linear_1_433)"
+                        stroke-width="2" stroke-linecap="round" />
+                    <defs>
+                        <lineargradient id="paint0_linear_1_433" x1="1"
+                            y1="2.5" x2="320.07" y2="2.5"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#E4752D" />
+                            <stop offset="1" stop-color="#FDB012" />
+                        </lineargradient>
+                    </defs>
+                </svg>
+            </h2>
+
+        </div>
+        <div class="card_grid container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-head">
+
+                        </div>
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+<!-- /pooja categoris -->
+
+  <!-- testimonials -->
+
+        <!-- Bootstrap 5 CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+        <!-- Bootstrap 5 JS -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <section class="testimonials my-5">
+            <div class="container">
+                <div class="heading text-center">
+                    <h2>Testimonials</h2>
+                    <svg style="margin-top: -25px;"
+                        xmlns="http://www.w3.org/2000/svg" width="210"
+                        height="2" viewBox="0 0 322 2" fill="none">
+                        <path d="M1 1L320.07 1"
+                            stroke="url(#paint0_linear_1_433)" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <div id="testimonialsCarousel" class="carousel slide"
+                    data-bs-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#testimonialsCarousel"
+                            data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#testimonialsCarousel"
+                            data-bs-slide-to="1"></li>
+                        <li data-bs-target="#testimonialsCarousel"
+                            data-bs-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Carousel Items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="wrap_testi">
+                                        <div
+                                            class="testi text-center d-flex flex-column align-items-center">
+                                            <div class="img-area mb-3">
+                                                <img
+                                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                                    alt="Person 1"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="abc_area">
+                                                <h3>ABC</h3>
+                                                <span>Bandhan Matrimony</span>
+                                            </div>
+
+                                            <div class="top_left_quote"><img
+                                                    src="{% static 'assets/svg/right_quate.svg' %}"
+                                                    alt></div>
+
+                                            <div
+                                                class="para_area text-md-start">
+                                                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus veritatis repellendus delectus, est, alias recusandae."</p>
+                                            </div>
+                                            <div class="bottom_right_quote"><img
+                                                    src="{% static 'assets/svg/left_quate.svg' %}"
+                                                    alt></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="wrap_testi">
+                                        <div
+                                            class="testi text-center d-flex flex-column align-items-center">
+                                            <div class="img-area mb-3">
+                                                <img
+                                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                                    alt="Person 1"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="abc_area">
+                                                <h3>ABC</h3>
+                                                <span>Bandhan Matrimony</span>
+                                            </div>
+
+                                            <div class="top_left_quote"><img
+                                                    src="{% static 'assets/svg/right_quate.svg' %}"
+                                                    alt></div>
+
+                                            <div
+                                                class="para_area text-md-start">
+                                                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus veritatis repellendus delectus, est, alias recusandae."</p>
+                                            </div>
+                                            <div class="bottom_right_quote"><img
+                                                    src="{% static 'assets/svg/left_quate.svg' %}"
+                                                    alt></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="wrap_testi">
+                                        <div
+                                            class="testi text-center d-flex flex-column align-items-center">
+                                            <div class="img-area mb-3">
+                                                <img
+                                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                                    alt="Person 1"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="abc_area">
+                                                <h3>ABC</h3>
+                                                <span>Bandhan Matrimony</span>
+                                            </div>
+
+                                            <div class="top_left_quote"><img
+                                                    src="{% static 'assets/svg/right_quate.svg' %}"
+                                                    alt></div>
+
+                                            <div
+                                                class="para_area text-md-start">
+                                                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus veritatis repellendus delectus, est, alias recusandae."</p>
+                                            </div>
+                                            <div class="bottom_right_quote"><img
+                                                    src="{% static 'assets/svg/left_quate.svg' %}"
+                                                    alt></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="carousel-item ">
+                            <div class="row">
+                                <div class="col-md-4 col-12">
+                                    <div class="wrap_testi">
+                                        <div
+                                            class="testi text-center d-flex flex-column align-items-center">
+                                            <div class="img-area mb-3">
+                                                <img
+                                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                                    alt="Person 1"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="abc_area">
+                                                <h3>ABC</h3>
+                                                <span>Bandhan Matrimony</span>
+                                            </div>
+
+                                            <div class="top_left_quote"><img
+                                                    src="{% static 'assets/svg/right_quate.svg' %}"
+                                                    alt></div>
+
+                                            <div
+                                                class="para_area text-md-start">
+                                                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus veritatis repellendus delectus, est, alias recusandae."</p>
+                                            </div>
+                                            <div class="bottom_right_quote"><img
+                                                    src="{% static 'assets/svg/left_quate.svg' %}"
+                                                    alt></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="wrap_testi">
+                                        <div
+                                            class="testi text-center d-flex flex-column align-items-center">
+                                            <div class="img-area mb-3">
+                                                <img
+                                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                                    alt="Person 1"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="abc_area">
+                                                <h3>ABC</h3>
+                                                <span>Bandhan Matrimony</span>
+                                            </div>
+
+                                            <div class="top_left_quote"><img
+                                                    src="{% static 'assets/svg/right_quate.svg' %}"
+                                                    alt></div>
+
+                                            <div
+                                                class="para_area text-md-start">
+                                                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus veritatis repellendus delectus, est, alias recusandae."</p>
+                                            </div>
+                                            <div class="bottom_right_quote"><img
+                                                    src="{% static 'assets/svg/left_quate.svg' %}"
+                                                    alt></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="wrap_testi">
+                                        <div
+                                            class="testi text-center d-flex flex-column align-items-center">
+                                            <div class="img-area mb-3">
+                                                <img
+                                                    src="{% static 'assets/svg/pandit_for_testimonial.svg' %}"
+                                                    alt="Person 1"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="abc_area">
+                                                <h3>ABC</h3>
+                                                <span>Bandhan Matrimony</span>
+                                            </div>
+
+                                            <div class="top_left_quote"><img
+                                                    src="{% static 'assets/svg/right_quate.svg' %}"
+                                                    alt></div>
+
+                                            <div
+                                                class="para_area text-md-start">
+                                                <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus veritatis repellendus delectus, est, alias recusandae."</p>
+                                            </div>
+                                            <div class="bottom_right_quote"><img
+                                                    src="{% static 'assets/svg/left_quate.svg' %}"
+                                                    alt></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Add more carousel items if needed -->
+                    </div>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button"
+                        data-bs-target="#testimonialsCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                        data-bs-target="#testimonialsCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- testimonials -->
+
+        <!-- share and erarn -->
+        <section class="share_earn text-center">
+            <h2 class="h2">
+                "Share and Earn: Unlock Multiple Rewards!"
+            </h2>
+            <div class="btns my-5">
+                <span class="btn_main">
+                    Book Pandit</span>
+                <span class="mx-3 btn_main_outline">
+                    <img
+                        src="{% static 'assets/svg/play_button_white.svg' %}"
+                        alt> Play Video
+                </span>
+            </div>
+
+        </section>
+        <!-- /share and erarn -->
+
+        <!-- contact us -->
+        <section class="contact_us my-5">
+            <div class="container-fluid">
+                <div class="heading text-center">
+                    <h2 class="h2">
+                        Contact Us
+                        <br>
+                        <svg style="margin-top: -25px;"
+                            xmlns="http://www.w3.org/2000/svg" width="210"
+                            height="2" viewBox="0 0 322 2" fill="none">
+                            <path d="M1 1L320.07 1"
+                                stroke="url(#paint0_linear_1_433)"
+                                stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <lineargradient id="paint0_linear_1_433" x1="1"
+                                    y1="2.5" x2="320.07" y2="2.5"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E4752D" />
+                                    <stop offset="1" stop-color="#FDB012" />
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </h2>
+
+                </div>
+
+                <div class="contact_grid">
+                    <div class="container">
+                        <div class="row">
+                            
+                            <div class="col-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_location.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Office Address :</h4>
+                                <p>Lorem ipsum odor amet, consectetuer
+                                    </p>
+                            </div>
+
+                            <div class="col-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_mail.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Email Address :</h4>
+                                <p>abc@gmail.com</p>
+                            </div>
+
+                            <div class="col-4 text-center">
+                                <div class="icon">
+                                    <img
+                                        src="{% static 'assets/svg/poly_phone.svg' %}"
+                                        alt="contact_us_location">
+
+                                </div>
+                                <h4>Phone Number :</h4>
+                                <p> 9100110088</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form_container">
+                    <div class="container">
+                        <form action class="form">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="name">Name :</label>
+                                    <input type="text" class="form-control"
+                                        name="name" placeholder="Your Name">
+                                </div>
+                                <div class="col">
+                                    <label for="email">Email :</label>
+                                    <input type="email" class="form-control"
+                                        name="email"
+                                        placeholder="Enter Your Email">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="pooja_category">Name of pooja
+                                        Category :</label>
+                                    <input type="text" class="form-control"
+                                        name="name_of_pooja_category"
+                                        placeholder="Name of pooja Category :">
+                                </div>
+
+                                <div class="col">
+                                    <label for="name_of_pooja">Name of Pooja
+                                        :</label>
+                                    <input type="text" class="form-control"
+                                        name="name_of_pooja"
+                                        placeholder="Name of Pooja ">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="location">Location :</label>
+                                    <input type="text" class="form-control"
+                                        name="location" placeholder="Location ">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="preferred_date">Preferred date
+                                        :</label>
+                                    <input type="date" class="form-control"
+                                        name="preferred_date">
+                                </div>
+
+                                <div class="col">
+                                    <label for="preferred_time">Preferred Time
+                                        :</label>
+                                    <input type="time" class="form-control"
+                                        name="preferred_date">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <label for="mobile">Mobile :</label>
+                                    <input type="mobile" class="form-control"
+                                        name="mobile" placeholder="Mobile">
+                                </div>
+
+                            </div>
+                            <div class="text-center ">
+                                <button class="btn btn_main">
+                                    <span class="fa fa-paper-plane mx-1">
+                                    </span>
+                                    Send
+                                    Inquiry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+
+            </div>
+        </section>
+
+        <!-- /contact us -->
+
+        
+{% endblock main %}

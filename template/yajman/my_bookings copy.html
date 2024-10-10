@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}pandit plus | online pandit booking website{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'style/pages.css' %}">
+{% endblock link %}
+
+{% block main %}
+
+<div class="wrappped_body">
+
+    <section class="headding text-center">
+        <h1>My Bookings</h1>
+    </section>
+
+    <div class="content container">
+
+        
+
+
+        <section class="search_form">
+            <div class="container">
+
+                {% if user_bookings %}
+<div class="container">
+    <div class="row">
+        {% for booking in user_bookings %}
+        <div class="col-12 col-md-4">
+            <div class="card">
+                <div class="row no-gutters">
+                
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title h5">{{ booking.pandit_id.username }}</h5>
+                            <p class="card-text p"><strong>Pooja: </strong>{{ booking.services_id.service_name }}</p>
+                            <p class="card-text p"><strong>Status: </strong>{{ booking.get_status_display }}</p>
+                            <p class="card-text p"><strong>Payment Status: </strong>{{ booking.get_payment_status_display }}</p>
+
+                            {% if booking.status == "conformed" %}
+                            <div class="actions">
+                                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Make Payment - ₹: {{booking.services_id.rate}}</a>
+                                <!-- You can add more actions here -->
+                            </div>
+                            {% endif %}
+
+                            <div class="actions my-2">
+                                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel Booking</a>
+                                <!-- You can add more actions here -->
+                            </div>
+
+                            <p class="card-text">
+                                <small class="text-muted">Last updated 3 mins ago</small> <!-- Adjust the update timing accordingly -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<p>You have no bookings yet.</p>
+{% endif %}
+
+
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock main %}

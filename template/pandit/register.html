@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}pandit plus | online pandit booking website{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'style/login.css' %}">
+{% endblock link %}
+
+{% block main %}
+
+<div class="container-fluid wrapper p-4 p-xl-5" style="min-height: 100vh;">
+  <div
+    class="container h-100 d-flex align-items-center justify-content-center p-0 p-lg-5">
+    <div class="row w-100 main_row" style="max-width: 1200px;">
+      <!-- Form column (60%) -->
+      <div
+        class="col-md-7 d-flex flex-column align-items-center justify-content-center text-center">
+        <h2 class="my-4 my-md-5">Register to Panditji Profile</h2>
+
+        <form action="/pandit/register" method="post"
+          class="form text-center w-100 px-0 px-lg-5">
+          {% csrf_token %}
+          <input class="form-control i1" type="text"
+            placeholder="Username" name="username" required>
+
+          <input class="form-control my-3 i3" type="password"
+            placeholder="password" name="password" required>
+
+          <input class="form-control i1" type="text"
+            placeholder="Full Name" name="full_name" required>
+
+          <input class="form-control i1 my-3 " type="number"
+            placeholder="Mobile Number" name="mobile" required>
+          <input class="form-control my-3 i2" type="email"
+            placeholder="Email Address" name="email" required>
+
+          <input class="form-control my-3 i2" type="text"
+            placeholder=" Address" name="address" id="addressInput" required>
+
+          <input class="form-control my-3 i2" type="number"
+            placeholder="Experience/Years" name="experience" id="experience" required>
+
+          <input type="hidden" id="latInput" name="latitude">
+          <input type="hidden" id="lonInput" name="longitude">
+
+          <button class="btn btn_main_global my-4" type="submit">
+            Register</button>
+        </form>
+      </div>
+
+      <!-- Other content column (40%) -->
+      <div
+        class="col-md-5 d-flex flex-column align-items-center justify-content-center text-center m2">
+        <h2 class="my-2 my-md-5">Hello, Welcome to our Website</h2>
+        <p>Enter your personal details and start your journey with
+          us</p>
+        <a href="/pandit/login">
+          <button class="btn btn_main_global my-4">Login</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", event => {
+      let $ = document.querySelector.bind(document);
+      let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      };
+    
+      // Automatically call getLocation when the page loads
+      getLocation();
+    
+      function getLocation() {
+        let geolocation = navigator.geolocation;
+        if (geolocation) {
+          geolocation.getCurrentPosition(onGeoSuccess, onGeoError, options);
+        } else {
+          console.log("Geolocation is not supported by this browser.");
+        }
+      }
+    
+      function onGeoSuccess(position) {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+    
+        // Populate hidden inputs with latitude and longitude
+        $("#latInput").value = latitude;
+        $("#lonInput").value = longitude;
+    
+        // Reverse Geocode to get address (using a free API like OpenStreetMap Nominatim or Google Maps)
+        getAddressFromCoordinates(latitude, longitude);
+      }
+    
+      function onGeoError(error) {
+        let detailError;
+        
+        if (error.code === error.PERMISSION_DENIED) {
+          detailError = "User denied the request for Geolocation.";
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          detailError = "Location information is unavailable.";
+        } else if (error.code === error.TIMEOUT) {
+          detailError = "The request to get user location timed out.";
+        } else if (error.code === error.UNKNOWN_ERROR) {
+          detailError = "An unknown error occurred.";
+        }
+    
+        $("#error").innerHTML = `Error: ${detailError}`;
+      }
+    
+      function getAddressFromCoordinates(lat, lon) {
+        // Example using OpenStreetMap Nominatim (you can use Google Maps API too)
+        let apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+    
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            let address = data.display_name;  // Full address string from API
+    
+            // Populate the text input with the full address
+            $("#addressInput").value = address;
+          })
+          .catch(error => {
+            console.error('Error fetching address:', error);
+            $("#error").innerHTML = "Error fetching the address.";
+          });
+      }
+    });
+    
+</script>
+
+{% endblock main %}

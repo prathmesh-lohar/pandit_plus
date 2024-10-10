@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}pandit plus | online pandit booking website{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'style/pages.css' %}">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-pokl+zP0dTc2TBsDImi1yxwn10nfo4/OLiTmyqQOHzveBrdb0Rm8rM0NnhuPIqR+60aBTFMHfY1HtTlhF5ZKg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock link %}
+
+{% block main %}
+
+<div class="wrappped_body">
+
+    <section class="headding text-center">
+        <h1>My Bookings</h1>
+    </section>
+    <div class="content container-fluid mt-0 mt-md-3">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 tabs_container">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab"
+                                data-bs-toggle="tab" href="#home" role="tab"
+                                aria-controls="home"
+                                aria-selected="true">Bookins</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" id="profile-tab"
+                                data-bs-toggle="tab" href="#profile" role="tab"
+                                aria-controls="profile" aria-selected="false">
+                                Online Status</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="messages-tab"
+                                data-bs-toggle="tab" href="#messages" role="tab"
+                                aria-controls="messages"
+                                aria-selected="false">Bookings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="settings-tab"
+                                data-bs-toggle="tab" href="#settings" role="tab"
+                                aria-controls="settings"
+                                aria-selected="false">Settings</a>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="col-md-10 mr-0 pr-0">
+                    <div class="tab-content " id="myTabContent">
+                        <div class="tab-pane fade show active" id="home"
+                            role="tabpanel" aria-labelledby="home-tab">
+
+                            <div class="form_container m-0 p-0">
+
+                                <div class="container-fluid  m-0 p-0">
+
+                                    <div class="row card_head_row ">
+                                        <div
+                                            class="col-2 text-center ">
+                                            <span class>date</span>
+                                        </div>
+                                        <div class="col-10 text-center">
+                                            Booking
+                                            Details</div>
+                                    </div>
+
+                                    {% if user_bookings %}
+
+                                    <div class="row ">
+                                        {% for booking in user_bookings %}
+                                        <div class="col-2 ">
+                                            <div
+                                                class="date_div  text-center float-end ">
+                                                <p class="month">{{ booking.date|date:"F" }}</p>
+                                                <h4 class="date">{{ booking.date|date:"j" }}</h4>
+                                                <p class="year">{{ booking.date|date:"Y" }}</p>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="col-10 text-center px-0 mx-0">
+                                            <div
+                                                class=" bookings_card  d-flex align-items-center">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div
+                                                            class="col-12 col-md-4">
+                                                            <div
+                                                                class="row name_img_row mx-0 px-0 text-start">
+                                                                <div
+                                                                    class="col-4 mx-0 px-1 my-auto">
+                                                                    <img
+                                                                        src="{% static 'assets/png/pooja_img.png' %}"
+                                                                        alt></div>
+                                                                <div
+                                                                    class="col-8">
+                                                                    <h6>{{ booking.pandit_id.pandit_profile.name }} 
+                                                                        </h6>
+                                                                    <span> {{ booking.name_of_pooja.service.service_name }}
+                                                                        </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div
+                                                            class="col-12 col-md-3 b_time text-start">
+                                                            <p class="time"><i
+                                                                    class="fa fa-circle fa-xs mx-2"></i>
+                                                                    {{ booking.time }}</p>
+                                                            <p
+                                                                class="pay_status"><i
+                                                                    class="fa fa-circle fa-xs mx-2"></i>
+                                                                    {{ booking.get_status_display }}</p>
+                                                        </div>
+
+                                                        <div
+                                                            class="col-12 col-md-5">
+                                                            <div class="row">
+                                                                {% if booking.status == "conformed" %}
+                                                                <div
+                                                                    class="col-6">
+                                                                    <!-- <span
+                                                                        class="btn btn_main px-2">Pay  
+                                                                        - ₹:
+                                                                        {{booking.name_of_pooja.rate}}</span> -->
+
+                                                                        <span
+                                                                        class="btn btn_main px-2">Complete  Payment</span>
+                                                                </div>
+                                                                {% endif %}
+                                                                <div class="col-6">
+                                                                    <a href="cancel_booking/{{booking.id}}">
+                                                                    <span class="btn btn_main_outline">Cancel</span>
+                                                                </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    {% endif  %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel"
+                            aria-labelledby="profile-tab">
+                            <h3>Profile</h3>
+                            <p>Content for Profile tab.</p>
+                            <form method="POST"
+                                action="{% url 'update_availability' %}">
+                                <!-- Use the URL for the update view -->
+                                {% csrf_token %}
+                                {{ availability_form.as_p }}
+                                <!-- Display the availability form -->
+                                <button type="submit">Update
+                                    Availability</button>
+                            </form>
+
+                        </div>
+                        <div class="tab-pane fade" id="messages" role="tabpanel"
+                            aria-labelledby="messages-tab">
+                            <h3>Messages</h3>
+                            <p>Content for Messages tab.</p>
+                        </div>
+                        <div class="tab-pane fade" id="settings" role="tabpanel"
+                            aria-labelledby="settings-tab">
+                            <h3>Settings</h3>
+                            <p>Content for Settings tab.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            .card_head_row{
+                color: #9C9C9C;
+                font-family: 'Roboto';
+                font-size: 16px;
+            }
+            .date_div{
+
+            }
+            .date_div , .bookings_card{
+                border: 2px solid #e4762d23; /* Light border similar to your image */
+                border-radius: 8px; /* Rounded corners */
+                background-color: #ffffff; /* White background */
+                text-align: center; /* Center text */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+                transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+                height: 100px;
+            }
+            @media only screen and (max-width: 767px){
+                .date_div , .bookings_card{
+                    
+                    height: auto;
+                } 
+                .bookings_card img{
+                    border-radius: 5px;
+    
+                    border-radius: 5px;
+                    aspect-ratio: 1 / 1;
+                    object-fit: cover;
+                    width: 50px !important;
+                    height: 50px;
+                 
+    
+                }
+            }
+            .date_div{
+                width: 60%;
+            }
+            .bookings_card img{
+                border-radius: 5px;
+
+                border-radius: 5px;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                width: 100%;
+             
+
+            }
+            .bookings_card h6{
+                font-family: 'Roboto';
+                font-size: 25px;
+                color: #2A2A2A;
+                font-weight: 600;
+            }
+            .bookings_card span{
+                font-family: 'Roboto';
+                font-size: 15px;
+                color: #9C9C9C;
+                font-weight: 500;
+            }
+            .bookings_card .b_time .time{
+                color: #9C9C9C;
+                font-family: 'Roboto';
+                font-size: 13px;
+                line-height: 10px;
+                margin-top: 12px;
+
+            }
+            .bookings_card .b_time .time .fa{
+                color: #FFEAB6;
+            }
+            .bookings_card .b_time .pay_status{
+                color: #D92121;
+                font-family: 'Roboto';
+                font-size: 13px;
+                font-weight: 500;
+
+
+            }
+            span.btn.btn_main{
+                font-family: 'Roboto';
+                font-size: 12px;
+                font-weight: 500;
+                color: #2A2A2A;
+                border-radius: 5px;
+                margin-top: 18px;
+                padding: 8px 12px;
+                width: 100%;
+            }
+
+
+            span.btn.btn_main_outline{
+                font-family: 'Roboto';
+                font-size: 12px;
+                font-weight: 500;
+                color: #E4752D;
+                border-radius: 5px;
+                border: 1px solid #E4752D ;
+margin-top: 18px;
+padding: 8px 49px;
+                width: 100%;
+
+            }
+            .name_img_row{
+            
+            }
+
+            .date_div .month{
+                color: #9C9C9C;
+                font-size: 13px;
+                line-height: 5px;
+                font-weight: 500;
+                margin-top: 12px;
+                font-family: Roboto;
+            }
+            .date_div .date{
+                color: #E4752D;
+                font-weight: 700;
+                font-size: 35px;
+                line-height: 25px;
+            }
+            .date_div .year{
+                color: #9C9C9C;
+                font-size: 13px;
+                line-height: 20px;
+                font-weight: 500;
+            }
+            .form_container{
+                background-color: rgba(240, 248, 255, 0);
+            }
+           .headding{
+            padding: 40px 0px 20px 0px !important;
+           }
+            /* Custom styles for vertical tabs */
+            .nav-tabs {
+                flex-direction: column; /* Default to vertical tabs */
+                padding-bottom: 100px;
+                border-bottom: 0px;
+                font-family: 'Roboto';
+
+            }
+            .nav-tabs .nav-link{
+                color: #2a2a2ade;
+                font-size: 16px;
+            }
+            .nav-tabs .nav-link.active {
+                margin: 0 !important;
+                border: 0 !important;
+                border-top-left-radius: 0 !important; 
+                border-top-right-radius : 0 !important;
+                border-top-right-radius: 0 !important;
+                /* margin-bottom: calc(-1* var(--bs-nav-tabs-border-width)); */
+                /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+                /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+                /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+                background-color: #f8c3b735;
+                color: #E4752D;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        
+            @media (max-width: 768px) {
+                .nav-tabs {
+                    flex-direction: row; /* Change to horizontal on mobile screens */
+                    flex-wrap: wrap; /* Allow wrapping of tabs */
+                    padding-bottom: 0px;
+
+                    
+                }
+                .tab-content {
+                    margin-top: 20px; /* Add space above tab content on small screens */
+                }
+                .nav-tabs .nav-link {
+                    width: 100% !important;
+                    border-radius: 0 !important;
+                }
+                .nav-tabs .nav-link.active{
+                
+                    border-radius: 0 !important;
+
+                }
+                .nav-tabs .nav-link.active {
+                    margin: 0 !important;
+                    border: 0 !important;
+                    border-top-left-radius: 0 !important; */
+                    border-top-right-radius: 0 !important;
+                    /* margin-bottom: calc(-1* var(--bs-nav-tabs-border-width)); */
+                    /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+                    /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+                    /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+                }
+                .bookings_card .b_time .time {
+                    color: #9C9C9C;
+                    font-family: 'Roboto';
+                    font-size: 10px;
+                    line-height: 0px;
+                 
+
+                }
+                .bookings_card .b_time .pay_status {
+                    color: #D92121;
+                    font-family: 'Roboto';
+                    font-size: 10px;
+                    font-weight: 500;
+                    margin-right: 70px;
+                    
+
+                }
+            }
+
+            @media (max-width: 768px) { /* Mobile view for screens smaller than 768px */
+                .b_time {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 10px;
+
+                }
+        
+                .b_time p {
+                    margin: 0;
+                    margin-top: 10px;
+
+                }
+             
+                    .date_div {
+                    width: 100% !important;
+                    height: 100%;
+                }
+                .date_div .month {
+                    margin-top: 42px;
+                }
+                span.btn.btn_main_outline{
+                    width: 100%;
+                    font-size: 10px;
+                    font-size: 8px !important;  
+                    margin-bottom: 10px;          
+                }
+                span.btn.btn_main{
+                    width: 100%;
+                    font-size: 10px; 
+                    font-size: 8px !important;
+                    margin-bottom: 10px;
+                }
+                
+            }
+
+            .form_container{
+                background-color: none;
+                border: none;
+                box-shadow: none;
+
+            }
+           
+        </style>
+
+    </div>
+
+</div>
+
+<br>
+<br>
+
+<style>
+    .headding{
+     padding: 40px 0px 20px 0px !important;
+    }
+     /* Custom styles for vertical tabs */
+     .nav-tabs {
+         flex-direction: column; /* Default to vertical tabs */
+         padding-bottom: 100px;
+         border-bottom: 0px;
+         font-family: 'Roboto';
+
+     }
+     .nav-tabs .nav-link{
+         color: #2A2A2A;
+         font-size: 17px !important;
+
+         font-family: Roboto;
+   
+         font-style: normal;
+         font-weight: 400;
+         line-height: 40px; /* 235.294% */
+         letter-spacing: 0.51px;
+     }
+     .nav-tabs .nav-link.active {
+         margin: 0 !important;
+         border: 0 !important;
+         border-top-left-radius: 0 !important; 
+         border-top-right-radius : 0 !important;
+         border-top-right-radius: 0 !important;
+         /* margin-bottom: calc(-1* var(--bs-nav-tabs-border-width)); */
+         /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+         /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+         /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+ 
+         color: #E4752D;
+font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 40px; /* 190.476% */
+letter-spacing: 0.63px;
+
+         border-radius: 5px;
+border: 2px solid rgba(237, 237, 237, 0.00);
+background: rgba(243, 174, 158, 0.14);
+     }
+ 
+     @media (max-width: 768px) {
+         .sitch_col{
+             display: flex;
+             justify-content: center;
+             align-items: center;
+         }
+         .nav-tabs {
+             flex-direction: row; /* Change to horizontal on mobile screens */
+             flex-wrap: wrap; /* Allow wrapping of tabs */
+             padding-bottom: 0px;
+
+      
+             
+         }
+         .tab-content {
+             margin-top: 20px; /* Add space above tab content on small screens */
+         }
+         .nav-tabs .nav-link {
+             width: 100% !important;
+             border-radius: 0 !important;
+
+             border-radius: 2px;
+             border: 2px solid rgba(237, 237, 237, 0.00);
+             background: #FFF;
+             font-size: 14px !important;
+             line-height: 1rem !important;
+             padding: 10px 5px;
+
+         }
+         .nav-tabs .nav-link.active{
+         
+             border-radius: 0 !important;
+             font-size: 14px !important;
+             line-height: 1rem !important;
+             
+         }
+         .nav-tabs .nav-link.active {
+             margin: 0 !important;
+             border: 0 !important;
+             border-top-left-radius: 0 !important; */
+             border-top-right-radius: 0 !important;
+             /* margin-bottom: calc(-1* var(--bs-nav-tabs-border-width)); */
+             /* border: var(--bs-nav-tabs-border-width) solid transparent; */
+             /* border-top-left-radius: var(--bs-nav-tabs-border-radius); */
+             /* border-top-right-radius: var(--bs-nav-tabs-border-radius); */
+         }
+     }
+
+
+
+     
+ </style>
+
+{% endblock main %}

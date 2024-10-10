@@ -1,0 +1,23 @@
+.bottom_nav_mob .navbar{
+    margin: -22px 0px;
+    /* border-radius: 15px 1px 0px 0px !important;
+    -webkit-border-radius: 15px 14px 0px 0px !important;
+    -moz-border-radius: 15px 14px 0px 0px !important;
+    -ms-border-radius: 15px 14px 0px 0px !important;
+    -o-border-radius: 15px 14px 0px 0px !important; */
+}
+.bottom_nav_mob .navbar .container p{
+    font-family: 'Roboto';
+    font-size: 10px;
+    font-weight: 500;
+ 
+
+}
+.bottom_nav_mob{
+    display: none;
+}
+@media only screen and (max-width: 767px){
+    .bottom_nav_mob {
+        display: block;
+    }
+}
