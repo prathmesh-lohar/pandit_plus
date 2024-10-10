@@ -214,19 +214,9 @@
                         alt="about_us">
                 </div>
                 <div class="col-md-8 text-center text-md-start">
-                    <p class="p">Lorem ipsum odor amet, consectetuer
-                        adipiscing elit. Viverra id penatibus leo porta
-                        convallis gravida. Venenatis montes natoque sem
-                        etiam turpis semper. Parturient dui lobortis
-                        urna natoque lacinia conubia tellus faucibus
-                        vulputate. Dignissim nisl mattis viverra ex eget
-                        faucibus. Gravida fermentum a, felis arcu dolor
-                        dapibus. Egestas lectus magnis phasellus
-                        venenatis potenti tempor justo at. Feugiat elit
-                        facilisi convallis arcu senectus maecenas con.
-                        Ornare donec neque natoque et pharetra nisi?
-                        Cursus volutpat, Ornare donec .</p>
-
+                    <p class="p">
+                        PanditPlus.in is your trusted, one-stop solution for booking experienced and qualified pandits for all your religious and spiritual needs. We simplify the process of finding the right pandit for various ceremonies, ensuring that your rituals are performed with utmost care and adherence to tradition. From simple pujas to grand ceremonies, our platform connects you with knowledgeable pandits who excel in Vedic practices and provide top-tier service. Whether it’s a Griha Pravesh, Satyanarayan Puja, Wedding, or any other ritual, we ensure you find pandits who meet the specific requirements of each ceremony.
+                    </p>
                     <button class="btn btn_main ">Read More</button>
                 </div>
             </div>
@@ -294,18 +284,43 @@
             </h2>
 
         </div>
-        <div class="card_grid container">
+        <div class=" container">
             <div class="row">
+                {% if services_type %}
+                {% for st in services_type %}
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-head">
-                            
+                        <div class="card-header text-center">
+                            <h4>{{st}}</h4>
                         </div>
                         <div class="card-body">
+                            <div class="card-image">
+                                <img src="{{st.thumbnails.url}}" alt="" width="100%">
+                            </div>
+                            <div class="content">
 
+                             {% for poojas in st.services_set.all %}
+                                
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="10" viewBox="0 0 11 10" fill="none">
+                                    <path d="M8.55037 0.984863L3.64882 5.88642L2.05913 4.29673L0.5 5.85585L2.08969 7.44555L3.659 9.01486L5.21813 7.45573L10.1197 2.55419L8.55037 0.984863Z" fill="#16BA13"/>
+                                  </svg>
+                                  &nbsp;
+                       
+
+                                  {{poojas.service_name}}
+                            </p>
+                            {% endfor %}   
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn_main w-100">View Details</button>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% endif %}
+           
             </div>
         </div>
     </div>

@@ -15,7 +15,13 @@ from .forms import BookingForm,YajmanProfileForm
 
 
 def home(request):
-    return render(request,"home.html")
+    from pandit.models import services_type
+    
+    services_type = services_type.objects.all()
+    data = {
+        'services_type':services_type,
+    }
+    return render(request,"home.html",data)
 
 def register(request):
     if request.method == 'POST':

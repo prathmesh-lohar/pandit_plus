@@ -92,9 +92,7 @@
                             <a class="nav-link" href="#pooja_types">Pooja Type</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
-                        </li>
+                     
                         {% else %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#"
@@ -191,11 +189,13 @@
                                     {% endif %}
                                     alt>
                             </a>
-                            <ul class="dropdown-menu " aria-labelledby="userDropdown" style="margin-left: -50px;">
-                                <li><a class="dropdown-item" href="">My Profile</a></li>
-                                <li><a class="dropdown-item" href="">Settings</a></li>
+                            <ul class="dropdown-menu " aria-labelledby="userDropdown" style="margin-left: -50px;"  >
+                                {% if request.user.pandit_profile %}
+                                <li><a class="dropdown-item" href="/pandit" style="font-size: 17px; font-weight: 500;">My Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="">Logout</a></li>
+                                
+                                {% endif %}
+                                <li><a class="dropdown-item" href="/logout" style="font-size: 17px; font-weight: 500;">Logout</a></li>
                             </ul>
                             {% else %}
                            

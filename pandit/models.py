@@ -41,6 +41,7 @@ class pandit_profile(models.Model):
     
     
 class services_type(models.Model):
+    thumbnails = models.ImageField(upload_to="service_type_thumbnails")
     services_type = models.CharField(max_length=255, blank=True,null=True,default="")
     
     def __str__(self):
