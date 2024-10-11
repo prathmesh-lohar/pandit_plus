@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOWED_ORIGINS = ['https://*www.panditplus.in/','https://www.panditplus.in/*',"http://*51.20.3.130/","http://51.20.3.130/*"]
+CORS_ALLOWED_ORIGINS = ['https://*panditplus.in/','https://*www.panditplus.in/','https://www.panditplus.in/*','https://panditplus.in/*',"http://*51.20.3.130/","http://51.20.3.130/*"]
 CSRF_TRUSTED_ORIGINS =  ['https://*www.panditplus.in/','https://www.panditplus.in/*',"http://*51.20.3.130/","http://51.20.3.130/*"]
 
 import os
