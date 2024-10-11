@@ -1,0 +1,66 @@
+sudo nano /etc/systemd/system/gunicorn.socket
+
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+
+sudo nano /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/www/html/pandit_plus
+ExecStart=/var/www/html/pandit_plus/env/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          pandit_plus.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo nano /etc/nginx/sites-available/pandit_plus
+
+server {
+    listen 80;
+    server_name 51.20.3.130;
+
+    # Favicon configuration
+    location = /favicon.ico { 
+        access_log off; 
+        log_not_found off; 
+    }
+
+    # Static files
+    location /static/ {
+        alias /var/www/html/pandit_plus/static/;  # Use alias instead of root for a subdirectory
+    }
+
+    # Media files
+    location /media/ {
+        alias /var/www/html/pandit_plus/media/;  # Serving media files from the media directory
+    }
+
+    # Application root served by Gunicorn
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+
+
+sudo ln -s /etc/nginx/sites-available/pandit_plus /etc/nginx/sites-enabled/
+
+
+sudo systemctl restart nginx

@@ -5,6 +5,7 @@ django-admin-interface==0.28.9
 django-browser-reload==1.15.0
 django-cleanup==9.0.0
 django-colorfield==0.11.0
+mysqlclient==2.2.4
 pillow==10.4.0
 python-slugify==8.0.4
 setuptools==72.1.0

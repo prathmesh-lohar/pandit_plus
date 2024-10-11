@@ -27,6 +27,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CORS_ALLOWED_ORIGINS = ['https://*www.panditplus.in/','https://www.panditplus.in/*',"http://*51.20.3.130/","http://51.20.3.130/*"]
+CSRF_TRUSTED_ORIGINS =  ['https://*www.panditplus.in/','https://www.panditplus.in/*',"http://*51.20.3.130/","http://51.20.3.130/*"]
 
 import os
 
@@ -89,14 +91,41 @@ WSGI_APPLICATION = 'pandit_plus.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pandit_plus',
+            'USER': 'Prabhuremote',
+            'PASSWORD': '$$Prabhu@9975$$',
+            'HOST': '51.20.3.130',  # Remote MySQL host
+            'PORT': '3306',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pandit_plus',
+            'USER': 'Prabhu',
+            'PASSWORD': '$$Prabhu@9975$$',
+            'HOST': 'localhost',  # Local MySQL host
+            'PORT': '3306',
+        }
+    }
+
 
 
 # Password validation
