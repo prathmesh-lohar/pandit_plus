@@ -30,6 +30,17 @@ h4 {
     font-size: 30px;
 }
 
+.mobile_only{
+    display: none !important;
+}
+@media only screen and (max-width: 767px) {
+
+    .mobile_only{
+        display: block !important;
+    }
+
+}
+
 @media only screen and (max-width: 767px) {
     h2 {}
 
@@ -373,7 +384,7 @@ h4 {
 
     .slider_container p {
         font-size: 0.8rem !important;
-        line-height: 1.2 !important;
+        line-height: 1.7 !important;
         padding: 10px 10px 0px 10px;
 
     }
@@ -897,8 +908,8 @@ h4 {
         /* max-height: 350px; */
         /* width: 100%;
          */
-        width: 150px;
-        height: 200px;
+        width: 150px !important;
+        height: 200px !important;
     }
 
 }
@@ -1138,8 +1149,8 @@ h4 {
     }
 
     .contact_us .form_container .btn_main {
-        font-size: 14px !important;
-        padding: 5px 10px 5px 10px !important;
+        font-size: 12px !important;
+        padding: 7px 14px 7px 14px !important;
     }
 }
 
@@ -1401,7 +1412,7 @@ h4 {
     }
     .pooja_categories .row{
         --bs-gutter-x: 0.5rem !important;
-        height: 100px;
+        /* height: 100px; */
     }
     .pooja_categories .card img{
         height: 100px;

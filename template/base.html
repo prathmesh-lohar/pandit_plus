@@ -92,7 +92,20 @@
                             <a class="nav-link" href="#pooja_types">Pooja Type</a>
                         </li>
                         {% if user.is_authenticated %}
-                     
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mobile_only" href="/pandit" >
+                               My Profile
+                            </a>
+                            
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link mobile_only" href="/logout" >
+                               Logout
+                            </a>
+                            
+                        </li>
+
                         {% else %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#"
@@ -238,7 +251,7 @@
 
             <!-- bottom nav for mobile -->
 
-            <div class="bottom_nav_mob">
+            {% comment %} <div class="bottom_nav_mob">
                 <nav class="navbar fixed-bottom navbar-light bg-light">
                     <div class="container text-center">
 
@@ -262,7 +275,7 @@
                     </div>
                 </nav>
 
-            </div>
+            </div> {% endcomment %}
             <!-- bottom nav for mobile -->
 
             <!-- footer -->
