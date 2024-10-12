@@ -20,6 +20,7 @@ def home(request):
     services_type = services_type.objects.all()
     data = {
         'services_type':services_type,
+        'active_page': 'home'
     }
     return render(request,"home.html",data)
 
@@ -163,12 +164,14 @@ def find_pandit(request):
         for service in services_offered:
             pandit_services.append({
                 'pandit': pandit,
-                'service': service
+                'service': service,
+               
             })
 
     context = {
         'services': all_services,
         'pandit_services': pandit_services,
+         'active_page': 'find_pandit'
     }
 
     # Log the final pandit services data
@@ -211,7 +214,8 @@ def my_bookings(request):
     user_bookings = booking.objects.filter(yajman_id=request.user)
 
     context = {
-        'user_bookings': user_bookings
+        'user_bookings': user_bookings,
+        'active_page': 'my_bookings'
     }
 
     return render(request, "yajman/my_bookings.html", context)
@@ -270,6 +274,7 @@ def view_pandit(request, pandit_id, pandit_service_id):
         'service': service,
         'form': form,
         'services_provide':services_provide,
+        'active_page': 'view_pandit'
     })
 
 
