@@ -47,7 +47,7 @@ h1 {
 
 .content .search_form input {
     border-radius: 5px;
-    border: 2px solid #E4752D;
+    border: 1.5px solid #E4752D;
     background: #FFF;
     padding: 10px 5px;
 }
@@ -66,7 +66,7 @@ h1 {
 
 .content .search_form select {
     border-radius: 5px;
-    border: 2px solid #E4752D;
+    border: 1.5px solid #E4752D;
     background: #FFF;
     padding: 10px 5px;
 
@@ -87,6 +87,8 @@ h1 {
 
 .content .search_form option {
     background-color: #fff;
+    font-family: 'Roboto';
+
 }
 
 .content .search_form select option:hover {

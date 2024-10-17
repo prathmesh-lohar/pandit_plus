@@ -11,6 +11,12 @@ from django.db.models import Q
 from pandit.models import services,pandit_profile,booking,pandit_service
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import BookingForm,YajmanProfileForm
+
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
 # Create your views here.
 
 
@@ -279,3 +285,25 @@ def view_pandit(request, pandit_id, pandit_service_id):
 
 
 
+def translate_test(request):
+    return render(request, "translate_test.html")
+
+@csrf_exempt  # Only use if necessary for testing, consider proper CSRF protection in production
+def translate(request):
+    if request.method == 'POST':
+        url = 'https://libretranslate.de/translate'
+        data = {
+            'q': request.POST.get('text'),  # Text to translate
+            'source': request.POST.get('source_lang', 'en'),  # Default source language
+            'target': request.POST.get('target_lang', 'es'),  # Default target language
+            'format': 'text'
+        }
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.post(url, json=data, headers=headers)
+            response.raise_for_status()  # Raise an error for bad responses
+            return JsonResponse(response.json())  # Return the translated text
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request method'}, status=400)

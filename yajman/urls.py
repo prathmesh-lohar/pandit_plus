@@ -13,5 +13,7 @@ urlpatterns = [
     # path("book_pandit/<int:pandit_id>/<int:service_id>", views.book_pandit, name="book_pandit"),
     path("my_bookings", views.my_bookings, name="my_bookings"),
     path('cancel_booking/<int:booking_id>/', views.cancel_booking, name='cancel_booking'),
+    path('translate_test', views.translate_test, name='translate_test'),
+    path('translate', views.translate, name='translate'),
     # Add this line
 ]

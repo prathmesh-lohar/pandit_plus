@@ -335,6 +335,14 @@ h4 {
 
 }
 
+select#languageSelect{
+    border: 0;
+    font-size: 17px;
+    background: #0000ff00;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
 .slider_container.container2 .image.text-center.my-5.for_mob {
     display: none !important;
 }

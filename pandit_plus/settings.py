@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+v^i$+2!3a&0u###^%xnii%t7if-)%+l+!j+fuu0r%49@^eoc('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
  
     'django.contrib.staticfiles',
-    'django_browser_reload',
+
     'django_cleanup.apps.CleanupConfig',
     'yajman',
     'pandit',
@@ -61,8 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    'django_browser_reload.middleware.BrowserReloadMiddleware',
+
 ]
 
 ROOT_URLCONF = 'pandit_plus.urls'
@@ -100,7 +99,16 @@ WSGI_APPLICATION = 'pandit_plus.wsgi.application'
 #     }
 # }
 
-
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'pandit_plus',
+#             'USER': 'Prabhuremote',
+#             'PASSWORD': '$$Prabhu@9975$$',
+#             'HOST': '51.20.3.130',  # Remote MySQL host
+#             'PORT': '3306',
+#         }
+#     }
 
 
 if DEBUG:
