@@ -78,8 +78,7 @@ class CreateOrderView(View):
             net_amount_for_pandit=net_amount_for_pandit,
             payment_status="received"  # To be updated upon payment confirmation
         )
-        booking.payment_status = "recieved"
-        booking.save()
+        
 
         mail_sub = "payment payment initiated"
         mail_body = "payment  initiated check the payment status "+booking.name

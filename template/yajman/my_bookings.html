@@ -136,7 +136,8 @@
                                                                         {{booking.name_of_pooja.rate}}</span> -->
 
                                                                         {% if booking.payment_status != 'recieved' %}
-                                                                        <span class="btn btn_main px-2 rzp-button" data-booking-id="{{ booking.id }}">Complete Payment</span>
+                                                                        <span class="btn btn_main px-2 rzp-button" data-booking-id="{{ booking.id }}" data-yajman-email="{{ booking.yajman_id.email }}" data-yajman-name="{{ booking.yajman_id.yajman_profile.name }}" data-yajman-mobile="{{ booking.yajman_id.yajman_profile.mobile }}" >Complete Payment</span>
+
                                                                     {% else %}
                                                                         <span class="btn btn_main px-2">Payment {{ booking.payment_status }}</span>
                                                                     {% endif %}
@@ -467,6 +468,9 @@ padding: 8px 49px;
 
             // Fetch the booking ID from the data attribute
             var bookingId = this.getAttribute('data-booking-id');
+            var yajmanname = this.getAttribute('data-yajman-name');
+            var yajmanemail = this.getAttribute('data-yajman-email');
+            var yajmanmobile = this.getAttribute('data-yajman-mobile');
 
             fetch("/payments/create-order/" + bookingId, {  // Use the dynamic booking_id in the URL
                 method: 'POST',
@@ -481,7 +485,7 @@ padding: 8px 49px;
                     key: "{{ RAZORPAY_KEY_ID }}", // Your Razorpay Key ID
                     amount: data.amount, // Amount from create order
                     currency: data.currency,
-                    name: "Your Company Name",
+                    name: "panditplus.in",
                     description: "Test Transaction",
                     order_id: data.id, // Generated order ID
                     handler: function (response) {
@@ -489,12 +493,12 @@ padding: 8px 49px;
                         // You can also send this response to your backend for further processing
                     },
                     prefill: {
-                        name: "John Doe",
-                        email: "john.doe@example.com",
-                        contact: "9999999999"
+                        name: "yajmanname",
+                        email: "yajmanemail",
+                        contact: "yajmanmobile"
                     },
                     theme: {
-                        color: "#F37254"
+                        color: "#E4752D"
                     }
                 };
                 var rzp = new Razorpay(options);
