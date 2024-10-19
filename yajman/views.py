@@ -31,6 +31,7 @@ def home(request):
     }
     return render(request,"home.html",data)
 
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -47,6 +48,11 @@ def register(request):
         # Check if username already exists
         if User.objects.filter(username=username).exists():
             messages.error(request, 'Username already exists!')
+            return redirect('register')
+
+        # Check if the mobile number already exists in yajman_profile
+        if yajman_profile.objects.filter(mobile=mobile).exists():
+            messages.error(request, 'Mobile number already exists!')
             return redirect('register')
 
         try:
@@ -90,21 +96,30 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        mobile = request.POST.get('mobile')  # Use mobile instead of username
         password = request.POST.get('password')
 
-        # Authenticate the user
-        user = authenticate(request, username=username, password=password)
+        try:
+            # Find the user linked to the mobile number
+            profile = yajman_profile.objects.get(mobile=mobile)
+            user = profile.yajman_id  # Get the User instance associated with the profile
 
-        if user is not None:
-            # Log in the user
-            login(request, user)  # Django's login function to log in the user
-            messages.success(request, 'Logged in successfully!')
-            return redirect('/')  # Redirect to home page
-        else:
-            messages.error(request, 'Invalid username or password!')
+            # Authenticate the user
+            authenticated_user = authenticate(request, username=user.username, password=password)
+
+            if authenticated_user is not None:
+                # Log in the user
+                login(request, authenticated_user)  # Django's login function
+                messages.success(request, 'Logged in successfully!')
+                return redirect('/')  # Redirect to home page
+            else:
+                messages.error(request, 'Invalid mobile number or password!')
+
+        except yajman_profile.DoesNotExist:
+            messages.error(request, 'Mobile number not found!')
 
     return render(request, 'yajman/login.html')
+
 
 def logout(request):
     auth_logout(request)  # Log out the user

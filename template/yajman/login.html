@@ -16,16 +16,17 @@
             <div
                 class="col-md-7 d-flex flex-column align-items-center justify-content-center text-center">
                 <h2 class="my-4 my-md-5">Login to Panditji Plus</h2>
-                <form action="login" method="post"
-                    class="form text-center w-100 px-0 px-lg-5 login_form">
+            
+                <form action="login" method="post" class="form text-center w-100 px-0 px-lg-5 login_form">
                     {% csrf_token %}
-                    <input class="form-control mb-3" type="text"
-                        placeholder="Username" name="username" required>
-                    <input class="form-control mb-3" type="password"
-                        placeholder="Password" name="password" required>
-                    <button class="btn btn_main_global mt-2 mb-4"
-                        type="submit">Login</button>
+                    <input class="form-control mb-3" type="number" placeholder="Mobile Number" name="mobile" required>
+                    <input class="form-control mb-3" type="password" placeholder="Password" name="password" required>
+                    <p class="float-start regi">If you don't have an account: <a href="/register">Create account</a></p>
+                    <button class="btn btn_main_global mt-2 mb-4" type="submit">Login</button>
                 </form>
+                
+           
+              
             </div>
 
             <!-- Other content column (40%) -->
@@ -42,4 +43,28 @@
         </div>
     </div>
 </div>
+
+<style>
+    .regi{
+ 
+        font-family: "Roboto";
+        font-size: 14px;
+        margin-left: 2px;
+        display: none;
+
+    }
+    .m2{
+        display: block;
+    }
+
+    @media only screen and (max-width: 767px) {
+        .regi{
+            display: block;
+        }
+        .m2{
+            display: none !important;
+        }
+    }
+ 
+</style>
 {% endblock main %}

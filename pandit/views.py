@@ -111,6 +111,11 @@ def update_availability(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=405)
 
 
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from django.core.exceptions import ValidationError
+from .models import pandit_profile  # Ensure this imports your pandit_profile model
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -128,6 +133,11 @@ def register(request):
             messages.error(request, 'Username already exists!')
             return redirect('/pandit/register')
 
+        # Check if the mobile number already exists in pandit_profile
+        if pandit_profile.objects.filter(mobile=mobile).exists():
+            messages.error(request, 'Mobile number already exists!')
+            return redirect('/pandit/register')
+
         try:
             # Create User (only with fields supported by the User model)
             user = User.objects.create_user(username=username, password=password, email=email)
@@ -142,7 +152,7 @@ def register(request):
                 address=address,
                 latitude=latitude,  # store latitude in pandit_profile
                 longitude=longitude,  # store longitude in pandit_profile
-                Exp=experience  # store experience in pandit_profile (or rename this to "experience" if that's your field)
+                Exp=experience  # store experience in pandit_profile
             )
             profile.save()
 
@@ -159,23 +169,49 @@ def register(request):
     return render(request, 'pandit/register.html')
 
 
+
 def user_login(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        mobile = request.POST.get('mobile')  # Retrieve mobile number
         password = request.POST.get('password')
 
-        # Authenticate the user
-        user = authenticate(request, username=username, password=password)
+        try:
+            # Find the user associated with this mobile number
+            profile = pandit_profile.objects.get(mobile=mobile)
+            user = profile.pandit_id  # Get the related User instance
 
-        if user is not None:
-            # Log in the user
-            login(request, user)  # Django's login function to log in the user
-            messages.success(request, 'Logged in successfully!')
-            return redirect('/pandit')  # Redirect to home page
-        else:
-            messages.error(request, 'Invalid username or password!')
+            # Authenticate the user using the username and password
+            user = authenticate(request, username=user.username, password=password)
+
+            if user is not None:
+                # Log in the user
+                login(request, user)  # Django's login function to log in the user
+                messages.success(request, 'Logged in successfully!')
+                return redirect('/pandit')  # Redirect to home page
+            else:
+                messages.error(request, 'Invalid mobile number or password!')
+
+        except pandit_profile.DoesNotExist:
+            messages.error(request, 'Mobile number not found!')
 
     return render(request, 'pandit/login.html')
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+
+#         # Authenticate the user
+#         user = authenticate(request, username=username, password=password)
+
+#         if user is not None:
+#             # Log in the user
+#             login(request, user)  # Django's login function to log in the user
+#             messages.success(request, 'Logged in successfully!')
+#             return redirect('/pandit')  # Redirect to home page
+#         else:
+#             messages.error(request, 'Invalid username or password!')
+
+#     return render(request, 'pandit/login.html')
 
 def logout(request):
     auth_logout(request)  # Log out the user

@@ -18,32 +18,29 @@
         class="col-md-7 d-flex flex-column align-items-center justify-content-center text-center">
         <h2 class="my-4 my-md-5">Login to Panditji Plus</h2>
 
-        <form action="register" method="post"
-          class="form text-center w-100 px-0 px-lg-5">
+        <form action="register" method="post" class="form text-center w-100 px-0 px-lg-5">
           {% csrf_token %}
-          <input class="form-control i1" type="text"
-            placeholder="Username" name="username" required>
-
-          <input class="form-control my-3 i3" type="password"
-            placeholder="password" name="password" required>
-
-          <input class="form-control i1" type="text"
-            placeholder="Full Name" name="full_name" required>
-
-          <input class="form-control i1 my-3 " type="number"
-            placeholder="Mobile Number" name="mobile" required>
-          <input class="form-control my-3 i2" type="email"
-            placeholder="Email Address" name="email" required>
-
-          <input class="form-control my-3 i2" type="text"
-            placeholder=" Address" name="address" id="addressInput" required>
-
+          
+          <input class="form-control i1" type="text" placeholder="Username" name="username" required>
+        
+          <input class="form-control my-3 i3" type="password" placeholder="Password" name="password" id="password" required>
+        
+          <input class="form-control my-3 i3" type="password" placeholder="Confirm Password" name="confirm_password" id="confirm_password" required>
+        
+          <input class="form-control i1" type="text" placeholder="Full Name" name="full_name" required>
+        
+          <input class="form-control i1 my-3" type="number" placeholder="Mobile Number" name="mobile" required>
+        
+          <input class="form-control my-3 i2" type="email" placeholder="Email Address" name="email" required>
+        
+          <input class="form-control my-3 i2" type="text" placeholder="Address" name="address" id="addressInput" required>
+        
           <input type="hidden" id="latInput" name="latitude">
           <input type="hidden" id="lonInput" name="longitude">
-
-          <button class="btn btn_main_global my-4" type="submit">
-            Register</button>
+        
+          <button class="btn btn_main_global my-4" type="submit" id="submitBtn">Register</button>
         </form>
+        
       </div>
 
       <!-- Other content column (40%) -->
@@ -129,5 +126,37 @@
     });
     
 </script>
+
+
+<script>
+  const form = document.querySelector('form');
+  const password = document.getElementById('password');
+  const confirmPassword = document.getElementById('confirm_password');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(event) {
+    // Check if password matches the confirm password
+    if (password.value !== confirmPassword.value) {
+      event.preventDefault();  // Prevent form submission
+      alert('Passwords do not match!');
+    }
+  });
+</script>
+
+<style>
+
+  .m2{
+      display: block;
+  }
+
+  @media only screen and (max-width: 767px) {
+     
+      .m2{
+          display: none !important;
+      }
+  }
+
+</style>
+
 
 {% endblock main %}

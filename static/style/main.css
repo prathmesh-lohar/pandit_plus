@@ -1,6 +1,7 @@
-a{
+a {
     text-decoration: none !important;
 }
+
 .font {
     font-family: Roboto;
 }
@@ -33,12 +34,13 @@ h4 {
     font-size: 30px;
 }
 
-.mobile_only{
+.mobile_only {
     display: none !important;
 }
+
 @media only screen and (max-width: 767px) {
 
-    .mobile_only{
+    .mobile_only {
         display: block !important;
     }
 
@@ -320,10 +322,11 @@ h4 {
 .navbar .dropdown-item.active {
     background-color: rgba(0, 123, 255, 0.1);
     /* Highlight active item */
-   
+
 
 }
-.navbar a.nav-link.active{
+
+.navbar a.nav-link.active {
     color: #FFFF !important;
 
 }
@@ -335,7 +338,7 @@ h4 {
 
 }
 
-select#languageSelect{
+select#languageSelect {
     border: 0;
     font-size: 17px;
     background: #0000ff00;
@@ -467,7 +470,7 @@ select#languageSelect{
     .services .grid .cards .card h3 {
         font-size: 18px !important;
         line-height: 0.8rem !important;
-       
+
     }
 
     .services .grid .cards .card p {
@@ -476,9 +479,7 @@ select#languageSelect{
 
     }
 
-    .services .grid .cards .card .pandit_icon img {
-   
-    }
+    .services .grid .cards .card .pandit_icon img {}
 }
 
 .services .grid {
@@ -823,6 +824,7 @@ select#languageSelect{
     /* 171.429% */
     letter-spacing: 0.42px;
 }
+
 @media only screen and (max-width: 767px) {
     .services .grid .cards .card .pandit_icon {
         /* margin-top: 20px; */
@@ -1389,27 +1391,27 @@ select#languageSelect{
 }
 
 .pooja_categories .card .card-body .content {
-    padding:   20px 25px 10px 25px;
-  
+    padding: 20px 25px 10px 25px;
+
 }
 
-.pooja_categories .card .card-body .content p{
+.pooja_categories .card .card-body .content p {
     color: #7C7C7C;
     font-family: Roboto;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: 81%;
-  
+
     letter-spacing: 0.42px;
 }
 
-.pooja_categories .card .card-footer .btn_main:hover{
+.pooja_categories .card .card-footer .btn_main:hover {
     background: linear-gradient(90deg, #E4752D 0%, #FDB012 100%) !important;
 
 }
 
-.pooja_categories .card .card-footer .btn_main{
+.pooja_categories .card .card-footer .btn_main {
     padding: 8px 40px 8px 40px !important;
     justify-content: center !important;
     align-items: center !important;
@@ -1425,25 +1427,30 @@ select#languageSelect{
 }
 
 @media only screen and (max-width: 767px) {
-    .pooja_categories .card .card-footer .btn_main{
+    .pooja_categories .card .card-footer .btn_main {
 
         padding: 5px 20px 5px 20px !important;
         font-size: 12px !important;
         margin: 0 !important;
     }
-    .pooja_categories .row{
+
+    .pooja_categories .row {
         --bs-gutter-x: 0.5rem !important;
         /* height: 100px; */
     }
-    .pooja_categories .card img{
+
+    .pooja_categories .card img {
         height: 100px;
     }
+
     .pooja_categories .card .card-body .content p {
         font-size: 11px;
     }
+
     .pooja_categories .card .card-body .content {
         padding: 15px 0px 7px 16px;
     }
+
     .pooja_categories .card {
         margin-top: 10px;
     }
@@ -1466,7 +1473,7 @@ select#languageSelect{
 
 .footer .social_icons {
     padding-top: 40px;
-    padding-right: 0.5rem !important; 
+    padding-right: 0.5rem !important;
 
 }
 
@@ -1515,6 +1522,13 @@ select#languageSelect{
     /* 146.154% */
     letter-spacing: 0.39px;
     padding: 40px 7px 20px 7px;
+}
+
+.regi {
+    margin-top: -8px !important;
+    margin-left: 2px !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
 }
 
 /*  global_form*/
