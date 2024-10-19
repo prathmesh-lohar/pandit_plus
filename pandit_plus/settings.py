@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+v^i$+2!3a&0u###^%xnii%t7if-)%+l+!j+fuu0r%49@^eoc('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -37,6 +37,16 @@ import os
 RAZORPAY_KEY_ID = "rzp_test_2U7cEGx2GTeRjD"
 RAZORPAY_SECRET_KEY = "QSQInAxAIPndmntXueRb5Qag"
 
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # or your email host like smtp.yourdomain.com
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'panditplus11@gmail.com'  # your email address
+EMAIL_HOST_PASSWORD = 'kssc fyrd omav uimo'  # your email password or app-specific password for Gmail
+DEFAULT_FROM_EMAIL = 'panditplus11@gmail.com'  # default sender email address
 
 # Application definition
 

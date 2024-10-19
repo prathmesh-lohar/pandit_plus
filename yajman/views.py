@@ -17,7 +17,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import  ReferralCode  # Ensure you import ReferralCode
 
-
+from pandit.mail import send_custom_email
 # Create your views here.
 
 
@@ -82,6 +82,12 @@ def register(request):
             auth_login(request, user)
 
             messages.success(request, 'Registration successful!')
+            mail_sub = "Your Registration Successful"
+            mail_body = """now you are yajman in panditplus community, login into your dashboard and make status .
+            https://panditplus.in/login"""
+            
+            
+            send_custom_email(to_email=email, subject=mail_sub, body=mail_body)
             return redirect('/')
 
         except ValidationError as e:
@@ -271,6 +277,7 @@ def cancel_booking(request, booking_id):
 @login_required
 def view_pandit(request, pandit_id, pandit_service_id):
     pandit = get_object_or_404(User, pk=pandit_id)
+
     yajman = request.user  # The logged-in user
     service = get_object_or_404(pandit_service, id=pandit_service_id)
     services_provide = pandit_service.objects.filter(pandit_id=pandit_id)
@@ -292,6 +299,16 @@ def view_pandit(request, pandit_id, pandit_service_id):
                 new_booking.payment_status = 'not_received'  # Set payment status to 'not_received'
                 new_booking.save()
                 messages.success(request, "Request sent to pandit. Please wait for confirmation before making payment.")
+                
+                
+                mail_sub_pandit = "you got new order reach to yajman and conform date and ask for payment compltion"
+                mail_body_pandit = "Yajman :"+request.user.username+"pooja : "+service.service.service_name
+                
+                
+                send_custom_email(to_email=pandit.email, subject=mail_sub_pandit, body=mail_body_pandit)
+                
+                
+                
             else:
                 messages.info(request, "You have already requested this pandit for the selected service.")
 

@@ -7,7 +7,7 @@ import razorpay
 from payments.models import Margin, Payment, Discount
 from pandit.models import booking  # Ensure the correct import for Booking
 from yajman.models import ReferralCode
-
+from pandit.mail import send_custom_email
 class CreateOrderView(View):
     def post(self, request, booking_id):
         from pandit.models import booking  # Ensure the correct import for Booking
@@ -80,6 +80,12 @@ class CreateOrderView(View):
         )
         booking.payment_status = "recieved"
         booking.save()
+
+        mail_sub = "payment payment initiated"
+        mail_body = "payment  initiated check the payment status "+booking.name
+            
+            
+        send_custom_email(to_email=booking.pandit_id.email, subject=mail_sub, body=mail_body)
 
         # Save the margin details
         Margin.objects.create(

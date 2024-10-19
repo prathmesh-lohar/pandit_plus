@@ -25,6 +25,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.views.decorators.csrf import csrf_exempt
 
+from pandit.mail import send_custom_email
 
 @login_required
 def home(request):
@@ -160,6 +161,15 @@ def register(request):
             auth_login(request, user)
 
             messages.success(request, 'Registration successful!')
+            
+            mail_sub = "Your Registration Successful"
+            mail_body = """now you are pandit in panditplus community, login into your dashboard and make status online if you are
+            ailable and offline if you busy .
+            https://panditplus.in/pandit/login"""
+            
+            
+            send_custom_email(to_email=email, subject=mail_sub, body=mail_body)
+            
             return redirect('/pandit')
 
         except ValidationError as e:
@@ -228,6 +238,12 @@ def update_availability(request):
         if availability_form.is_valid():
             availability_form.save()
             messages.success(request, 'Availability status updated successfully!')
+            mail_sub = "Your Available Now"
+            mail_body = """now you are available make offline if you busy .
+            https://panditplus.in/pandit"""
+            
+            
+            send_custom_email(to_email=request.user.email, subject=mail_sub, body=mail_body)
         else:
             messages.error(request, 'Failed to update availability status.')
     
