@@ -10,6 +10,9 @@
     integrity="sha512-pokl+zP0dTc2TBsDImi1yxwn10nfo4/OLiTmyqQOHzveBrdb0Rm8rM0NnhuPIqR+60aBTFMHfY1HtTlhF5ZKg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 {% endblock link %}
 
 {% block main %}
@@ -104,6 +107,8 @@
                                                                         </h6>
                                                                     <span> {{ booking.name_of_pooja.service.service_name }}
                                                                         </span>
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -130,8 +135,14 @@
                                                                         - ₹:
                                                                         {{booking.name_of_pooja.rate}}</span> -->
 
-                                                                        <span
-                                                                        class="btn btn_main px-2">Complete  Payment</span>
+                                                                        {% if booking.payment_status != 'recieved' %}
+                                                                        <span class="btn btn_main px-2 rzp-button" data-booking-id="{{ booking.id }}">Complete Payment</span>
+                                                                    {% else %}
+                                                                        <span class="btn btn_main px-2">Payment {{ booking.payment_status }}</span>
+                                                                    {% endif %}
+                                                                    
+
+                                                                       
                                                                 </div>
                                                                 {% endif %}
                                                                 <div class="col-6">
@@ -448,6 +459,55 @@ padding: 8px 49px;
 
 <br>
 <br>
+
+<script>
+    document.querySelectorAll('.rzp-button').forEach(function(button) {
+        button.onclick = function(e) {
+            e.preventDefault();
+
+            // Fetch the booking ID from the data attribute
+            var bookingId = this.getAttribute('data-booking-id');
+
+            fetch("/payments/create-order/" + bookingId, {  // Use the dynamic booking_id in the URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                var options = {
+                    key: "{{ RAZORPAY_KEY_ID }}", // Your Razorpay Key ID
+                    amount: data.amount, // Amount from create order
+                    currency: data.currency,
+                    name: "Your Company Name",
+                    description: "Test Transaction",
+                    order_id: data.id, // Generated order ID
+                    handler: function (response) {
+                        alert('Payment successful!');
+                        // You can also send this response to your backend for further processing
+                    },
+                    prefill: {
+                        name: "John Doe",
+                        email: "john.doe@example.com",
+                        contact: "9999999999"
+                    },
+                    theme: {
+                        color: "#F37254"
+                    }
+                };
+                var rzp = new Razorpay(options);
+                rzp.open();
+            })
+            .catch(err => {
+                console.error('Error:', err);
+            });
+        };
+    });
+</script>
+
+
 
 <style>
     .headding{

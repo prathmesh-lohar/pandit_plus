@@ -33,6 +33,11 @@ CSRF_TRUSTED_ORIGINS =  ['https://*panditplus.in/','https://*www.panditplus.in/'
 import os
 
 
+# settings.py
+RAZORPAY_KEY_ID = "rzp_test_2U7cEGx2GTeRjD"
+RAZORPAY_SECRET_KEY = "QSQInAxAIPndmntXueRb5Qag"
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +54,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'yajman',
     'pandit',
+    'payments'
 
 ]
 
@@ -120,7 +126,11 @@ if DEBUG:
             'PASSWORD': '$$Prabhu@9975$$',
             'HOST': '51.20.3.130',  # Remote MySQL host
             'PORT': '3306',
-        }
+        },
+        'OPTIONS': {
+         'connect_timeout': 60,
+            }  
+
     }
 else:
     DATABASES = {

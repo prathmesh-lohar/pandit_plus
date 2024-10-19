@@ -1,113 +1,56 @@
+<!-- templates/payment.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Razorpay Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
+<body>
 
-<body class="notranslate">
-    <h1>My first website</h1>
+<button id="rzp-button1">Pay Now</button>
 
-    <!-- Dropdown for selecting language -->
-    <label for="languageSelect">Select Language:</label>
-    <select id="languageSelect">
-        <option value="en">English</option>
-        <option value="mr">Marathi</option>
-        <option value="hi">hindi</option>
-      
-        <!-- Add more languages as needed -->
-    </select>
+<script>
+    document.getElementById('rzp-button1').onclick = function(e) {
+        e.preventDefault();
 
-    <p class="translate">This text will be translated</p>
-    <p>This text will not be translated</p>
-
-    <script>
-        var Cookie = {
-            set: function (name, value, days) {
-                var domain, domainParts, date, expires, host;
-
-                if (days) {
-                    date = new Date();
-                    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-                    expires = "; expires=" + date.toGMTString();
-                } else {
-                    expires = "";
-                }
-
-                host = location.host;
-                if (host.split(".").length === 1) {
-                    document.cookie = name + "=" + value + expires + "; path=/";
-                } else {
-                    domainParts = host.split(".");
-                    domainParts.shift();
-                    domain = "." + domainParts.join(".");
-
-                    document.cookie =
-                        name + "=" + value + expires + "; path=/; domain=" + domain;
-
-                    if (Cookie.get(name) == null || Cookie.get(name) != value) {
-                        domain = "." + host;
-                        document.cookie =
-                            name + "=" + value + expires + "; path=/; domain=" + domain;
-                    }
-                }
+        fetch('/payments/create-order', {  // URL to your Django view
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
             },
-
-            get: function (name) {
-                var nameEQ = name + "=";
-                var ca = document.cookie.split(";");
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == " ") {
-                        c = c.substring(1, c.length);
-                    }
-
-                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        })
+        .then(response => response.json())
+        .then(data => {
+            var options = {
+                key: "{{ RAZORPAY_KEY_ID }}", // Your Razorpay Key ID
+                amount: data.amount, // Amount from create order
+                currency: data.currency,
+                name: "Your Company Name",
+                description: "Test Transaction",
+                order_id: data.id, // Generated order ID
+                handler: function (response){
+                    alert('Payment successful!');
+                    // You can also send this response to your backend for further processing
+                },
+                prefill: {
+                    name: "John Doe",
+                    email: "john.doe@example.com",
+                    contact: "9999999999"
+                },
+                theme: {
+                    color: "#F37254"
                 }
-                return null;
-            },
-
-            erase: function (name) {
-                Cookie.set(name, "", -1);
-            }
-        };
-
-        // Initialize Google Translate
-        function googleTranslateElementInit() {
-            let url = new URL(window.location);
-            let lang = url.searchParams.get("lang");
-            if (lang) {
-                Cookie.set("googtrans", `/en/${lang}`, 7); // Set cookie for 7 days
-            } else {
-                Cookie.erase("googtrans");
-            }
-
-            new google.translate.TranslateElement({ pageLanguage: "en" }, "translate");
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            Cookie.erase("googtrans");
-            var googleTranslateScript = document.createElement("script");
-            googleTranslateScript.type = "text/javascript";
-            googleTranslateScript.async = true;
-            googleTranslateScript.src =
-                "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-            (document.getElementsByTagName("head")[0] ||
-                document.getElementsByTagName("body")[0]
-            ).appendChild(googleTranslateScript);
-
-            // Event listener for language selection
-            document.getElementById('languageSelect').addEventListener('change', function () {
-                var lang = this.value;
-                var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?lang=" + lang;
-                window.history.pushState({ path: newurl }, "", newurl);
-                window.location.reload(); // Reload page to apply translation
-            });
+            };
+            var rzp = new Razorpay(options);
+            rzp.open();
+        })
+        .catch(err => {
+            console.error('Error:', err);
         });
-    </script>
-</body>
+    };
+</script>
 
+</body>
 </html>

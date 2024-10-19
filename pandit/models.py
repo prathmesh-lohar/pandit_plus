@@ -73,6 +73,7 @@ class pandit_service(models.Model):
     
 
 
+
 class booking(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)

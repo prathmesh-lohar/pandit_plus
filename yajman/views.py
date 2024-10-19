@@ -15,6 +15,7 @@ from .forms import BookingForm,YajmanProfileForm
 import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .models import  ReferralCode  # Ensure you import ReferralCode
 
 
 # Create your views here.
@@ -40,6 +41,7 @@ def register(request):
         address = request.POST.get('address')
         latitude = request.POST.get('latitude')
         longitude = request.POST.get('longitude')
+        # Uncomment if you want to support profile picture upload
         # profile_picture = request.FILES.get('profile_picture')
 
         # Check if username already exists
@@ -61,11 +63,15 @@ def register(request):
                 address=address,
                 latitude=latitude,
                 longitude=longitude
-                # profile_picture=profile_picture
+                # profile_picture=profile_picture  # Uncomment to save the profile picture
             )
             profile.save()
 
-            
+            # Generate a unique referral code
+            referral_code = ReferralCode(yajman=user)
+            referral_code.generate_code()  # Call the method to generate a unique code
+            referral_code.save()
+
             # Log in the user automatically
             auth_login(request, user)
 
@@ -73,10 +79,14 @@ def register(request):
             return redirect('/')
 
         except ValidationError as e:
-            messages.error(request, str(e))
+            messages.error(request, f'Error during registration: {str(e)}')
+            return redirect('register')
+        except Exception as e:
+            messages.error(request, f'An unexpected error occurred: {str(e)}')
             return redirect('register')
 
     return render(request, 'yajman/register.html')
+
 
 def user_login(request):
     if request.method == 'POST':

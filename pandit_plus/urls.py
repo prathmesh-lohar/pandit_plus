@@ -25,8 +25,9 @@ urlpatterns = [
 
     path('',include('yajman.urls')),
     path('pandit',include('pandit.urls')),
+    path('payments',include('payments.urls')),
     
-    path('browser-reload/', include('django_browser_reload.urls', namespace='django_browser_reload')),
+   
 ]
 
 if settings.DEBUG:
