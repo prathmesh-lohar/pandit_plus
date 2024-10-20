@@ -135,7 +135,7 @@
                                                                         - ₹:
                                                                         {{booking.name_of_pooja.rate}}</span> -->
 
-                                                                        {% if booking.payment_status != 'recieved' %}
+                                                                        {% if booking.payment_status != 'received' %}
                                                                         <span class="btn btn_main px-2 rzp-button" data-booking-id="{{ booking.id }}" data-yajman-email="{{ booking.yajman_id.email }}" data-yajman-name="{{ booking.yajman_id.yajman_profile.name }}" data-yajman-mobile="{{ booking.yajman_id.yajman_profile.mobile }}" >Complete Payment</span>
 
                                                                     {% else %}
@@ -456,60 +456,80 @@ padding: 8px 49px;
 
     </div>
 
+    <script>
+        document.querySelectorAll('.rzp-button').forEach(function(button) {
+            button.onclick = function(e) {
+                e.preventDefault();
+    
+                // Fetch the booking ID from the data attribute
+                var bookingId = this.getAttribute('data-booking-id');
+                var yajmanname = this.getAttribute('data-yajman-name');
+                var yajmanemail = this.getAttribute('data-yajman-email');
+                var yajmanmobile = this.getAttribute('data-yajman-mobile');
+    
+                fetch("/payments/create-order/" + bookingId, {  // Use the dynamic booking_id in the URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var options = {
+                        key: "{{ RAZORPAY_KEY_ID }}", // Your Razorpay Key ID
+                        amount: data.amount, // Amount from create order
+                        currency: data.currency,
+                        name: "panditplus.in",
+                        description: "Test Transaction",
+                        order_id: data.id, // Generated order ID
+                        handler: function (response) {
+                            // This is where you call the backend to confirm the payment
+                            fetch("/payments/confirm-payment", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRFToken': '{{ csrf_token }}'
+                                },
+                                body: JSON.stringify({
+                                    payment_id: response.razorpay_payment_id,
+                                    booking_id: bookingId
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert('Payment successful and booking status updated!');
+                            })
+                            .catch(err => {
+                                console.error('Error confirming payment:', err);
+                            });
+                        },
+                        prefill: {
+                            name: yajmanname,
+                            email: yajmanemail,
+                            contact: yajmanmobile
+                        },
+                        theme: {
+                            color: "#E4752D"
+                        }
+                    };
+                    var rzp = new Razorpay(options);
+                    rzp.open();
+                })
+                .catch(err => {
+                    console.error('Error:', err);
+                });
+            };
+        });
+    </script>
+    
+
 </div>
 
 <br>
 <br>
 
-<script>
-    document.querySelectorAll('.rzp-button').forEach(function(button) {
-        button.onclick = function(e) {
-            e.preventDefault();
 
-            // Fetch the booking ID from the data attribute
-            var bookingId = this.getAttribute('data-booking-id');
-            var yajmanname = this.getAttribute('data-yajman-name');
-            var yajmanemail = this.getAttribute('data-yajman-email');
-            var yajmanmobile = this.getAttribute('data-yajman-mobile');
-
-            fetch("/payments/create-order/" + bookingId, {  // Use the dynamic booking_id in the URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                var options = {
-                    key: "{{ RAZORPAY_KEY_ID }}", // Your Razorpay Key ID
-                    amount: data.amount, // Amount from create order
-                    currency: data.currency,
-                    name: "panditplus.in",
-                    description: "Test Transaction",
-                    order_id: data.id, // Generated order ID
-                    handler: function (response) {
-                        alert('Payment successful!');
-                        // You can also send this response to your backend for further processing
-                    },
-                    prefill: {
-                        name: "yajmanname",
-                        email: "yajmanemail",
-                        contact: "yajmanmobile"
-                    },
-                    theme: {
-                        color: "#E4752D"
-                    }
-                };
-                var rzp = new Razorpay(options);
-                rzp.open();
-            })
-            .catch(err => {
-                console.error('Error:', err);
-            });
-        };
-    });
-</script>
 
 
 

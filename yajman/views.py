@@ -11,13 +11,21 @@ from django.db.models import Q
 from pandit.models import services,pandit_profile,booking,pandit_service
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import BookingForm,YajmanProfileForm
-
+from django.template.loader import render_to_string
+from django.urls import reverse
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import  ReferralCode  # Ensure you import ReferralCode
 
 from pandit.mail import send_custom_email
+from django.urls import reverse_lazy
+
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+
 # Create your views here.
 
 
@@ -349,3 +357,51 @@ def translate(request):
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+
+
+
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'registration/password_reset_form.html'
+    email_template_name = 'registration/custom_password_reset_email.html'
+    subject_template_name = 'registration/custom_password_reset_subject.txt'
+    success_url = reverse_lazy('password_reset_done')
+
+    def form_valid(self, form):
+        # Custom email logic
+        email = form.cleaned_data.get('email')
+        user = User.objects.filter(email=email).first()
+        
+        if user:
+            # Generate token and UID
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+
+            # Build reset URL
+            reset_url = self.request.build_absolute_uri(
+                reverse_lazy('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
+            )
+
+            # Prepare email content
+            mail_sub = 'Password Reset Request'
+            html_content = render_to_string('registration/custom_password_reset_email.html', {
+                'user': user,
+                'reset_url': reset_url,
+            })
+            plain_content = render_to_string('registration/custom_password_reset_email.txt', {
+                'user': user,
+                'reset_url': reset_url,
+            })
+
+            # Send email using your custom function
+            send_custom_email(to_email=user.email, subject=mail_sub, body=plain_content, html_content=html_content)
+
+        return super().form_valid(form)
+    
+    
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'password_reset.html'
+
+class CustomSetPasswordView(PasswordResetConfirmView):
+    template_name = 'set_password.html'

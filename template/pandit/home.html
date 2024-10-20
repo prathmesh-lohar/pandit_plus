@@ -64,14 +64,14 @@
                                             </div>
                                             <div class="col-8 col-md-7 ">
                                              <h4>{{profile.name}} {{profile.last_name}}</h4>
-                                             <span >Currently you are <span id="status-text"> {% if profile.availability == "availabe" %} Online {% else %} Offline{% endif %} </span></span>
+                                             <span >Currently you are <span id="status-text"> {% if profile.availability == "available" %} Online {% else %} Offline{% endif %} </span></span>
                                             </div>
                                         </div>
                                        </div>
                                         <div class="col-12 col-md-3 sitch_col">
                                             
                                             <div class="switch-button switch-button-lg switch-button-onlineoffline  mx-2 mb-2 mb-lg-0">
-                                                <input type="checkbox" name="item6" id="item6" {% if profile.availability == "availabe" %} Checked {% else %} {% endif %} />
+                                                <input type="checkbox" name="item6" id="item6" {% if profile.availability == "available" %} Checked {% else %} {% endif %} />
                                                 <span><label for="item6"></label></span>
                                             </div>
                                                                                    
@@ -662,12 +662,10 @@ background: rgba(243, 174, 158, 0.14);
             
             console.log('Availability being sent:', availability); // Debugging log
     
-            // Update the status text
+            // Update the status text on the UI
             if (statusText) { 
                 statusText.textContent = this.checked ? 'Available' : 'Busy'; 
             }
-
-            
     
             fetch('/pandit/update-availability', {
                 method: 'POST',
@@ -684,18 +682,19 @@ background: rgba(243, 174, 158, 0.14);
                         throw new Error(`Error: ${response.status} - ${text}`);
                     });
                 }
-                return response.json();
+                return response.json(); // Parse JSON if successful
             })
             .then(data => {
                 if (data.status === 'success') {
-                    console.log('Availability updated to:', data.availability); // Debugging log
+                    console.log('Availability updated to:', data.availability); // Log on success
                 } else {
-                    console.error('Error updating availability:', data.message);
+                    console.error('Error updating availability:', data.message); // Log error message
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error)); // Handle any errors
         });
     </script>
+    
     
 
 <style>

@@ -230,26 +230,43 @@ def logout(request):
 
 @login_required
 def update_availability(request):
-    profile = get_object_or_404(pandit_profile, pandit_id=request.user)
+    # Log the request method
+    print(f"Request method: {request.method}")
 
     if request.method == "POST":
-        availability_form = Pandit_availability_form(request.POST, instance=profile)
-        
-        if availability_form.is_valid():
-            availability_form.save()
-            messages.success(request, 'Availability status updated successfully!')
-            mail_sub = "Your Available Now"
-            mail_body = """now you are available make offline if you busy .
-            https://panditplus.in/pandit"""
-            
-            
-            send_custom_email(to_email=request.user.email, subject=mail_sub, body=mail_body)
+        try:
+            # Parse the incoming JSON data
+            data = json.loads(request.body)
+            print(f"Data received: {data}")
+        except json.JSONDecodeError as e:
+            # Log JSON parsing errors
+            print(f"JSONDecodeError: {str(e)}")
+            return JsonResponse({'status': 'error', 'message': 'Invalid JSON data.'}, status=400)
+
+        # Fetch the profile based on the current logged-in user
+        profile = get_object_or_404(pandit_profile, pandit_id=request.user)
+        print(f"Profile found: {profile}")
+
+        # Get the 'availability' field from the parsed data
+        availability = data.get('availability')
+        print(f"Availability received: {availability}")
+
+        # Validate the availability value
+        if availability in ['available', 'busy']:
+            profile.availability = availability  # Update the availability status
+            profile.save()
+
+            print(f"Profile updated to: {availability}")
+            # Return a success response
+            return JsonResponse({'status': 'success', 'availability': availability})
         else:
-            messages.error(request, 'Failed to update availability status.')
+            # Log invalid availability values
+            print(f"Invalid availability status: {availability}")
+            return JsonResponse({'status': 'error', 'message': 'Invalid availability status.'}, status=400)
     
-    return redirect('/pandit')  # Redirect back to the home page after submission
-
-
+    # Log non-POST requests
+    print(f"Invalid request method: {request.method}")
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method.'}, status=400)
 
 @login_required
 def update_profile(request):

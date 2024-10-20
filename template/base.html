@@ -86,12 +86,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/#about_us">About Us</a>
                             </li>
+                            {% if request.user.pandit_profile %}
+                            {% else %}
                             <li class="nav-item">
                                 <a class="nav-link {% if active_page == 'find_pandit' %}active{% endif %}" href="/find_pandit">Find your Pandit</a>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link {% if active_page == 'my_bookings' %}active{% endif %}" href="/my_bookings">My Bookings</a>
                             </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/#pooja_types">Pooja Type</a>
                             </li>
