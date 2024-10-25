@@ -28,7 +28,7 @@ class pandit_profile(models.Model):
     is_approved = models.BooleanField(default=False)
     
     availability_choices = [
-        ('availabe', 'availabe'),
+        ('online', 'online'),
         ('busy', 'busy'),
         ('not_said', 'not_said'),
     ]

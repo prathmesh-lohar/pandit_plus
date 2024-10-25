@@ -160,22 +160,19 @@ def find_pandit(request):
     pooja_type = request.GET.get('pooja_type')
     budget = request.GET.get('budget')
 
-    # Start with all available pandits
-    pandits = pandit_profile.objects.filter(availability='availabe')
+    # Start with all approved and available pandits
+    pandits = pandit_profile.objects.filter(is_approved=True, availability='online')
 
     # Log the initial set of pandits
-    print("Initial Pandits:", pandits)
+    print("Initial Approved and Available Pandits:", pandits)
 
     # Exclude pandits that the current yajman has already booked
     booked_pandits = booking.objects.filter(yajman_id=request.user).values_list('name_of_pooja__pandit_id', flat=True)
-    
     print("Booked Pandits IDs:", booked_pandits)  # Log booked pandit IDs for debugging
 
     # Apply exclusion for already booked pandits
     pandits = pandits.exclude(pandit_id__in=booked_pandits)
-    
-    # Log pandits after exclusion
-    print("Pandits after exclusion:", pandits)
+    print("Pandits after exclusion:", pandits)  # Log pandits after exclusion
 
     # Apply additional filters
     if location:
@@ -190,7 +187,10 @@ def find_pandit(request):
         budget_range = budget.split('-')
         if len(budget_range) == 2:
             min_budget, max_budget = map(int, budget_range)
-            pandits = pandits.filter(pandit_id__pandit_service__rate__gte=min_budget, pandit_id__pandit_service__rate__lte=max_budget)
+            pandits = pandits.filter(
+                pandit_id__pandit_service__rate__gte=min_budget,
+                pandit_id__pandit_service__rate__lte=max_budget
+            )
         else:
             pandits = pandits.filter(pandit_id__pandit_service__rate__lte=int(budget))
         print("Pandits after budget filter:", pandits)
@@ -202,27 +202,98 @@ def find_pandit(request):
     pandit_services = []
     for pandit in pandits:
         services_offered = pandit.pandit_id.pandit_service_set.all()
-        
-        # Log services for debugging
-        print(f"Services for pandit {pandit.pandit_id.username}: {services_offered}")
-        
+        print(f"Services for pandit {pandit.pandit_id.username}: {services_offered}")  # Log services for debugging
+
         for service in services_offered:
             pandit_services.append({
                 'pandit': pandit,
                 'service': service,
-               
             })
 
     context = {
         'services': all_services,
         'pandit_services': pandit_services,
-         'active_page': 'find_pandit'
+        'active_page': 'find_pandit'
     }
 
     # Log the final pandit services data
     print("Final Pandit Services:", pandit_services)
 
     return render(request, "yajman/find_pandit.html", context)
+
+# @login_required
+# def find_pandit(request):
+#     # Get all available services for the dropdown
+#     all_services = services.objects.all()
+
+#     # Get the search parameters from the request
+#     location = request.GET.get('location')
+#     pooja_type = request.GET.get('pooja_type')
+#     budget = request.GET.get('budget')
+
+#     # Start with all available pandits
+#     pandits = pandit_profile.objects.filter(availability='availabe')
+
+#     # Log the initial set of pandits
+#     print("Initial Pandits:", pandits)
+
+#     # Exclude pandits that the current yajman has already booked
+#     booked_pandits = booking.objects.filter(yajman_id=request.user).values_list('name_of_pooja__pandit_id', flat=True)
+    
+#     print("Booked Pandits IDs:", booked_pandits)  # Log booked pandit IDs for debugging
+
+#     # Apply exclusion for already booked pandits
+#     pandits = pandits.exclude(pandit_id__in=booked_pandits)
+    
+#     # Log pandits after exclusion
+#     print("Pandits after exclusion:", pandits)
+
+#     # Apply additional filters
+#     if location:
+#         pandits = pandits.filter(address__icontains=location)
+#         print("Pandits after location filter:", pandits)
+
+#     if pooja_type:
+#         pandits = pandits.filter(pandit_id__pandit_service__service__id=pooja_type)
+#         print("Pandits after pooja type filter:", pandits)
+
+#     if budget:
+#         budget_range = budget.split('-')
+#         if len(budget_range) == 2:
+#             min_budget, max_budget = map(int, budget_range)
+#             pandits = pandits.filter(pandit_id__pandit_service__rate__gte=min_budget, pandit_id__pandit_service__rate__lte=max_budget)
+#         else:
+#             pandits = pandits.filter(pandit_id__pandit_service__rate__lte=int(budget))
+#         print("Pandits after budget filter:", pandits)
+
+#     # Remove duplicates
+#     pandits = pandits.distinct()
+
+#     # Prepare the list of pandits and their services
+#     pandit_services = []
+#     for pandit in pandits:
+#         services_offered = pandit.pandit_id.pandit_service_set.all()
+        
+#         # Log services for debugging
+#         print(f"Services for pandit {pandit.pandit_id.username}: {services_offered}")
+        
+#         for service in services_offered:
+#             pandit_services.append({
+#                 'pandit': pandit,
+#                 'service': service,
+               
+#             })
+
+#     context = {
+#         'services': all_services,
+#         'pandit_services': pandit_services,
+#          'active_page': 'find_pandit'
+#     }
+
+#     # Log the final pandit services data
+#     print("Final Pandit Services:", pandit_services)
+
+#     return render(request, "yajman/find_pandit.html", context)
 
 
 # @login_required

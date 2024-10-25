@@ -252,7 +252,7 @@ def update_availability(request):
         print(f"Availability received: {availability}")
 
         # Validate the availability value
-        if availability in ['available', 'busy']:
+        if availability in ['online', 'busy']:
             profile.availability = availability  # Update the availability status
             profile.save()
 

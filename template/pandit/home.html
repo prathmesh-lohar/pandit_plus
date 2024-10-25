@@ -64,14 +64,14 @@
                                             </div>
                                             <div class="col-8 col-md-7 ">
                                              <h4>{{profile.name}} {{profile.last_name}}</h4>
-                                             <span >Currently you are <span id="status-text"> {% if profile.availability == "available" %} Online {% else %} Offline{% endif %} </span></span>
+                                             <span >Currently you are <span id="status-text"> {% if profile.availability == "online" %} Online {% else %} Offline{% endif %} </span></span>
                                             </div>
                                         </div>
                                        </div>
                                         <div class="col-12 col-md-3 sitch_col">
                                             
                                             <div class="switch-button switch-button-lg switch-button-onlineoffline  mx-2 mb-2 mb-lg-0">
-                                                <input type="checkbox" name="item6" id="item6" {% if profile.availability == "available" %} Checked {% else %} {% endif %} />
+                                                <input type="checkbox" name="item6" id="item6" {% if profile.availability == "online" %} Checked {% else %} {% endif %} />
                                                 <span><label for="item6"></label></span>
                                             </div>
                                                                                    
@@ -181,14 +181,14 @@
                                                 </div>
                                                 <div class="col-8 col-md-7 ">
                                                  <h4>{{profile.name}} {{profile.last_name}}</h4>
-                                                 <span >Currently you are <span id="status-text"> {% if profile.availability == "availabe" %} Online {% else %} Offline{% endif %} </span></span>
+                                                 <span >Currently you are <span id="status-text"> {% if profile.availability == "online" %} Online {% else %} Offline{% endif %} </span></span>
                                                 </div>
                                             </div>
                                            </div>
                                             <div class="col-12 col-md-3 sitch_col">
                                                 
                                                 <div class="switch-button switch-button-lg switch-button-onlineoffline  mx-2 mb-2 mb-lg-0">
-                                                    <input type="checkbox" name="item6" id="item6" {% if profile.availability == "availabe" %} Checked {% else %} {% endif %} />
+                                                    <input type="checkbox" name="item6" id="item6" {% if profile.availability == "online" %} Checked {% else %} {% endif %} />
                                                     <span><label for="item6"></label></span>
                                                 </div>
                                                                                        
@@ -338,7 +338,7 @@
         </div>
     </div>
     {% empty %}
-    <li>No bookings available.</li>
+    <li>No bookings availabe.</li>
     {% endfor %}
 </ul>
             </div>
@@ -658,13 +658,13 @@ background: rgba(243, 174, 158, 0.14);
     <script>
         document.getElementById('item6').addEventListener('change', function() {
             const statusText = document.getElementById('status-text');
-            const availability = this.checked ? 'available' : 'busy';
+            const availability = this.checked ? 'online' : 'busy';
             
             console.log('Availability being sent:', availability); // Debugging log
     
             // Update the status text on the UI
             if (statusText) { 
-                statusText.textContent = this.checked ? 'Available' : 'Busy'; 
+                statusText.textContent = this.checked ? 'online' : 'Busy'; 
             }
     
             fetch('/pandit/update-availability', {
