@@ -153,7 +153,7 @@ def login_as(request):
 @login_required
 def find_pandit(request):
     # Get all available services for the dropdown
-    all_services = services.objects.all()
+
 
     # Get the search parameters from the request
     location = request.GET.get('location')
@@ -164,15 +164,15 @@ def find_pandit(request):
     pandits = pandit_profile.objects.filter(is_approved=True, availability='online')
 
     # Log the initial set of pandits
-    print("Initial Approved and Available Pandits:", pandits)
+    # print("Initial Approved and Available Pandits:", pandits)
 
     # Exclude pandits that the current yajman has already booked
     booked_pandits = booking.objects.filter(yajman_id=request.user).values_list('name_of_pooja__pandit_id', flat=True)
-    print("Booked Pandits IDs:", booked_pandits)  # Log booked pandit IDs for debugging
+    # print("Booked Pandits IDs:", booked_pandits)  # Log booked pandit IDs for debugging
 
     # Apply exclusion for already booked pandits
     pandits = pandits.exclude(pandit_id__in=booked_pandits)
-    print("Pandits after exclusion:", pandits)  # Log pandits after exclusion
+    # print("Pandits after exclusion:", pandits)  # Log pandits after exclusion
 
     # Apply additional filters
     if location:
@@ -198,26 +198,26 @@ def find_pandit(request):
     # Remove duplicates
     pandits = pandits.distinct()
 
-    # Prepare the list of pandits and their services
-    pandit_services = []
-    for pandit in pandits:
-        services_offered = pandit.pandit_id.pandit_service_set.all()
-        print(f"Services for pandit {pandit.pandit_id.username}: {services_offered}")  # Log services for debugging
+    # # Prepare the list of pandits and their services
+    # pandit_services = []
+    # for pandit in pandits:
+    #     services_offered = pandit.pandit_id.pandit_service_set.all()
+    #     print(f"Services for pandit {pandit.pandit_id.username}: {services_offered}")  # Log services for debugging
 
-        for service in services_offered:
-            pandit_services.append({
-                'pandit': pandit,
-                'service': service,
-            })
+    #     for service in services_offered:
+    #         pandit_services.append({
+    #             'pandit': pandit,
+    #             'service': service,
+    #         })
 
     context = {
-        'services': all_services,
-        'pandit_services': pandit_services,
+        'pandits': pandits,
+        # 'pandit_services': pandit_services,
         'active_page': 'find_pandit'
     }
 
     # Log the final pandit services data
-    print("Final Pandit Services:", pandit_services)
+   
 
     return render(request, "yajman/find_pandit.html", context)
 
@@ -352,59 +352,44 @@ def cancel_booking(request, booking_id):
 
     return redirect('my_bookings') 
 
-
 @login_required
-def view_pandit(request, pandit_id, pandit_service_id):
+def view_pandit(request, pandit_id):
     pandit = get_object_or_404(User, pk=pandit_id)
-
     yajman = request.user  # The logged-in user
-    service = get_object_or_404(pandit_service, id=pandit_service_id)
+
+    # Get services offered by the specific pandit
     services_provide = pandit_service.objects.filter(pandit_id=pandit_id)
 
     # Check if a booking already exists for the Yajman and Pandit
-    existing_booking = booking.objects.filter(yajman_id=yajman, pandit_id=pandit, name_of_pooja=service).first()  # Assuming `name` is the field name for the service
+    existing_booking = booking.objects.filter(yajman_id=yajman, pandit_id=pandit).first()
 
     if request.method == 'POST':
-        # Handle form submission
-        form = BookingForm(request.POST)
+        form = BookingForm(request.POST, services_provide=services_provide)
         if form.is_valid():
             if not existing_booking:
-                # Create a new booking and set the foreign keys and statuses
                 new_booking = form.save(commit=False)
                 new_booking.yajman_id = yajman
                 new_booking.pandit_id = pandit
-                new_booking.services = service
-                new_booking.status = 'requested'          # Set status to 'requested'
-                new_booking.payment_status = 'not_received'  # Set payment status to 'not_received'
+                new_booking.status = 'requested'
+                new_booking.payment_status = 'not_received'
                 new_booking.save()
+                send_custom_email(to_email=pandit.email, subject="panditplus:new booking", body="your have new booking check on pandit plus ")
+                
                 messages.success(request, "Request sent to pandit. Please wait for confirmation before making payment.")
-                
-                
-                mail_sub_pandit = "you got new order reach to yajman and conform date and ask for payment compltion"
-                mail_body_pandit = "Yajman :"+request.user.username+"pooja : "+service.service.service_name
-                
-                
-                send_custom_email(to_email=pandit.email, subject=mail_sub_pandit, body=mail_body_pandit)
-                
-                
-                
             else:
                 messages.info(request, "You have already requested this pandit for the selected service.")
-
-            return redirect('find_pandit')  # Redirect after booking
+            return redirect('find_pandit')
+        else:
+            print(form.errors)  # Debug form errors
     else:
-        # Pass the service name or ID to the form
-        form = BookingForm(name_of_pooja=service)  # Use service.name if it represents the pooja name
+        form = BookingForm(services_provide=services_provide)
 
     return render(request, "yajman/view_pandit.html", {
         'pandit': pandit,
-        'service': service,
         'form': form,
-        'services_provide':services_provide,
+        'services_provide': services_provide,
         'active_page': 'view_pandit'
     })
-
-
 
 def translate_test(request):
     return render(request, "translate_test.html")

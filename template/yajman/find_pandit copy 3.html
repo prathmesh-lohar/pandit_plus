@@ -57,12 +57,12 @@
 
         <section class="pandit_cards">
             <div class="row">
-                {% if pandits %}
-                    {% for item in pandits %}
+                {% if pandit_services %}
+                    {% for item in pandit_services %}
 
                     <div class="col-6 col-md-3">
                         <div class="card">
-                            <img src="{% if item.profile_picture  %}{{ item.profile_picture.url }}{% else %}{% static 'assets/png/no_dp.png' %}{% endif %}" class="card-img-top" alt="...">
+                            <img src="{% if item.pandit.profile_picture  %}{{ item.pandit.profile_picture.url }}{% else %}{% static 'assets/png/no_dp.png' %}{% endif %}" class="card-img-top" alt="...">
                             <div class="card-body my-2">
                                 <h5 class="card-title">
                                     <div class="row">
@@ -72,7 +72,7 @@
                                               </svg>
                                         </div>
                                         <div class="col">
-                                            <span class="header-style">{{ item.name }}</span>
+                                            <span class="header-style">{{ item.pandit.name }}</span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -82,7 +82,7 @@
                                               </svg>
                                         </div>
                                         <div class="col mt-2">
-                                            <p> Exp. {{ item.Exp }} yrs</p>
+                                            <p> Exp. {{ item.pandit.Exp }} yrs</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -92,12 +92,12 @@
                                               </svg>
                                         </div>
                                         <div class="col">
-                                            <p class="card-text">{{ item.address|slice:":50" }}...</p>
+                                            <p class="card-text">{{ item.pandit.address|slice:":50" }}...</p>
                                         </div>
                                     </div>
                                     <!-- <p>Service Offered:</p> -->
 
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="col-1 mt-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                                 <path d="M2 10.5C1.725 10.5 1.48967 10.4022 1.294 10.2065C1.09833 10.0108 1.00033 9.77533 1 9.5V4C1 3.725 1.098 3.48967 1.294 3.294C1.49 3.09833 1.72533 3.00033 2 3H4V2C4 1.725 4.098 1.48967 4.294 1.294C4.49 1.09833 4.72533 1.00033 5 1H7C7.275 1 7.5105 1.098 7.7065 1.294C7.9025 1.49 8.00033 1.72533 8 2V3H10C10.275 3 10.5105 3.098 10.7065 3.294C10.9025 3.49 11.0003 3.72533 11 4V9.5C11 9.775 10.9022 10.0105 10.7065 10.2065C10.5108 10.4025 10.2753 10.5003 10 10.5H2ZM5 3H7V2H5V3Z" fill="#E4752D"/>
@@ -107,13 +107,13 @@
                                             <p class="card-text">{{ item.service.service.service_name }} - ₹{{ item.service.rate }} ({{ item.service.get_rate_type_display }})</p>
                                            
                                         </div>
-                                    </div> -->
+                                    </div>
                                      
 
                                     
 
                                     <div class="row text-center btn_row">
-                                        <a href="/view_pandit/{{item.pandit_id.id}}" class="btn btn_main_global">Book Pandit</a>
+                                        <a href="/view_pandit/{{item.pandit.pandit_id.id}}/{{item.service.id}}" class="btn btn_main_global">Book Pandit</a>
                                     </div>
                                 </h5>
                             </div>

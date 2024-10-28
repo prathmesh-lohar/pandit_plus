@@ -78,8 +78,8 @@ class booking(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     time = models.TimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
-    locattion = models.TextField()
-    name_of_pooja_category = models.ForeignKey(services_type,on_delete=models.CASCADE)
+    location = models.TextField()
+    # name_of_pooja_category = models.ForeignKey(services_type,on_delete=models.CASCADE)
     name_of_pooja= models.ForeignKey(pandit_service, on_delete=models.CASCADE, blank=True, null=True)
     
     yajman_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='yajman_bookings')

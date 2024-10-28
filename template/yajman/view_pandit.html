@@ -24,7 +24,9 @@
                     <div class="container-fuid info_div">
                         <div class="row">
                             <div class="col-5">
-                                <img src="{% if pandit.pandit_profile.profile_picture %}{{pandit.pandit_profile.profile_picture.url}} {% else %} {% static 'assets/png/babban.png' %} {% endif %}" alt="profle-pic-{{pandit.pandit_profile.name}}">
+                                <img
+                                    src="{% if pandit.pandit_profile.profile_picture %}{{pandit.pandit_profile.profile_picture.url}} {% else %} {% static 'assets/png/babban.png' %} {% endif %}"
+                                    alt="profle-pic-{{pandit.pandit_profile.name}}">
                             </div>
                             <div class="col-7">
                                 <p class="my-1"> <svg
@@ -35,7 +37,7 @@
                                             d="M10.7841 3.125C9.85467 3.125 8.96331 3.49421 8.30611 4.15142C7.6489 4.80862 7.27969 5.69998 7.27969 6.62941C7.27969 7.55883 7.6489 8.45019 8.30611 9.1074C8.96331 9.7646 9.85467 10.1338 10.7841 10.1338C11.7135 10.1338 12.6049 9.7646 13.2621 9.1074C13.9193 8.45019 14.2885 7.55883 14.2885 6.62941C14.2885 5.69998 13.9193 4.80862 13.2621 4.15142C12.6049 3.49421 11.7135 3.125 10.7841 3.125ZM7.04606 12.0028C6.11664 12.0028 5.22528 12.372 4.56807 13.0292C3.91087 13.6865 3.54166 14.5778 3.54166 15.5072V16.6174C3.54166 17.3221 4.0519 17.922 4.74717 18.0351C8.745 18.6883 12.8232 18.6883 16.821 18.0351C17.1573 17.9798 17.463 17.8069 17.6837 17.5473C17.9045 17.2877 18.026 16.9582 18.0265 16.6174V15.5072C18.0265 14.5778 17.6573 13.6865 17.0001 13.0292C16.3429 12.372 15.4516 12.0028 14.5221 12.0028H14.2044C14.03 12.0035 13.8605 12.0302 13.696 12.0832L12.8867 12.3477C11.5205 12.7937 10.0477 12.7937 8.68145 12.3477L7.87217 12.0832C7.70814 12.0306 7.53699 12.0035 7.36473 12.0028H7.04606Z"
                                             fill="#E4752D" />
                                     </svg>
-                                 {{pandit.pandit_profile.name}} </p>
+                                    {{pandit.pandit_profile.name}} </p>
                                 <hr>
 
                                 <p><svg xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +48,7 @@
                                             fill="#E4752D" />
                                     </svg>
 
-                                    {{service.rate}}  {{service.rate_type}}</p>
+                                    {{service.rate}} {{service.rate_type}}</p>
                                 <hr>
 
                                 <p> <svg xmlns="http://www.w3.org/2000/svg"
@@ -118,13 +120,11 @@
                         <div class="row karmakand g-2">
 
                             <b>Karmakand</b>
-                   
 
                             {% if services_provide %}
                             {% for sp in services_provide %}
                             <div class="col">
 
-                                
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     width="10" height="10" viewBox="0 0 10 10"
                                     fill="none">
@@ -132,7 +132,7 @@
                                         fill-opacity="0.4" />
                                 </svg>
 
-                                <span>{{sp.service}}</span>
+                                <span>{{sp.service}} ₹: {{sp.rate}} / {{sp.rate_type}}</span>
                             </div>
                             {% endfor %}
                             {% endif %}
@@ -142,12 +142,12 @@
                         <div class="row pandit_avails">
                             <b>Panditji Availabillity</b>
                             <div class="col-3">
-                             
-                             
+
                                 <div class=" form-check">
                                     <input
                                         class="form-check-input styled-checkbox"
-                                        type="checkbox" id="checkbox1" onclick="return false;"    {% if pandit.pandit_profile.availability == "availabe" %}checked{% endif %}>
+                                        type="checkbox" id="checkbox1"
+                                        onclick="return false;" {% if pandit.pandit_profile.availability == "online" %}checked{% endif %}>
                                     <label class="form-check-label"
                                         for="checkbox1">YES</label>
                                 </div>
@@ -157,7 +157,8 @@
                                 <div class=" form-check">
                                     <input type="checkbox"
                                         class="form-check-input styled-checkbox"
-                                        id="exampleCheck1"  onclick="return false;"  {% if pandit.pandit_profile.availability == "availabe" %} {% else %} checked{% endif %}>
+                                        id="exampleCheck1"
+                                        onclick="return false;" {% if pandit.pandit_profile.availability == "online" %} {% else %} checked{% endif %}>
                                     <label class="form-check-label"
                                         for="exampleCheck1">NO</label>
                                 </div>
@@ -169,29 +170,30 @@
 
                             <div class="col">
                                 <a href="/find_pandit">
-                                <button class="btn btn_main_outline"><svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <g clip-path="url(#clip0_1_46)">
-                                            <path
-                                                d="M12.8814 10.9403C12.733 11.0888 12.6496 11.2901 12.6496 11.5C12.6496 11.7099 12.733 11.9113 12.8814 12.0597L17.3598 16.5382C17.5092 16.6824 17.7091 16.7622 17.9167 16.7604C18.1243 16.7586 18.3228 16.6753 18.4696 16.5285C18.6164 16.3818 18.6997 16.1832 18.7015 15.9756C18.7033 15.7681 18.6235 15.5681 18.4793 15.4188L15.3522 12.2917H25.8362C26.0462 12.2917 26.2475 12.2083 26.396 12.0598C26.5445 11.9113 26.6279 11.71 26.6279 11.5C26.6279 11.2901 26.5445 11.0887 26.396 10.9402C26.2475 10.7918 26.0462 10.7084 25.8362 10.7084H15.3522L18.4793 7.58127C18.6235 7.43196 18.7033 7.23198 18.7015 7.02441C18.6997 6.81684 18.6164 6.61828 18.4696 6.4715C18.3228 6.32472 18.1243 6.24146 17.9167 6.23965C17.7091 6.23785 17.5092 6.31765 17.3598 6.46185L12.8814 10.9403Z"
-                                                fill="black" />
-                                        </g>
-                                        <defs>
-                                            <clippath id="clip0_1_46">
-                                                <rect width="24" height="24"
-                                                    fill="white" />
-                                            </clippath>
-                                        </defs>
-                                    </svg> Go back</button>
+                                    <button class="btn btn_main_outline"><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <g clip-path="url(#clip0_1_46)">
+                                                <path
+                                                    d="M12.8814 10.9403C12.733 11.0888 12.6496 11.2901 12.6496 11.5C12.6496 11.7099 12.733 11.9113 12.8814 12.0597L17.3598 16.5382C17.5092 16.6824 17.7091 16.7622 17.9167 16.7604C18.1243 16.7586 18.3228 16.6753 18.4696 16.5285C18.6164 16.3818 18.6997 16.1832 18.7015 15.9756C18.7033 15.7681 18.6235 15.5681 18.4793 15.4188L15.3522 12.2917H25.8362C26.0462 12.2917 26.2475 12.2083 26.396 12.0598C26.5445 11.9113 26.6279 11.71 26.6279 11.5C26.6279 11.2901 26.5445 11.0887 26.396 10.9402C26.2475 10.7918 26.0462 10.7084 25.8362 10.7084H15.3522L18.4793 7.58127C18.6235 7.43196 18.7033 7.23198 18.7015 7.02441C18.6997 6.81684 18.6164 6.61828 18.4696 6.4715C18.3228 6.32472 18.1243 6.24146 17.9167 6.23965C17.7091 6.23785 17.5092 6.31765 17.3598 6.46185L12.8814 10.9403Z"
+                                                    fill="black" />
+                                            </g>
+                                            <defs>
+                                                <clippath id="clip0_1_46">
+                                                    <rect width="24" height="24"
+                                                        fill="white" />
+                                                </clippath>
+                                            </defs>
+                                        </svg> Go back</button>
                                 </a>
 
                             </div>
 
                             <div class="col">
                                 <a href="#booknow">
-                                <button class="btn btn_main">Start Booking</button></a>
+                                    <button class="btn btn_main">Start
+                                        Booking</button></a>
 
                             </div>
                         </div>
@@ -200,75 +202,82 @@
             </div>
             <div class="col-md-7">
                 <div class="global_form">
-                <div class="form_container">
-                    <div class="container" id="booknow">
-                        <h3 class="text-center">Book a Pandit</h3>
+                    <div class="form_container">
+                        <div class="container" id="booknow">
+                            <h3 class="text-center">Book a Pandit</h3>
 
-                        <form method="post">
-                            {% csrf_token %}
-
-                            <!-- Row for Name -->
-                            <div class="row ">
-                                <div class="col-md-12">
-                                    {{ form.name.label_tag }} 
-                                    {{ form.name }}
+                            <form method="post">
+                                {% csrf_token %}
+                            
+                                <!-- Row for Name -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form.name.label_tag }}
+                                        {{ form.name }}
+                                        {% if form.name.errors %}
+                                            <div class="text-danger">{{ form.name.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Row for Date and Time -->
-                            <div class="row ">
-                                <div class="col-md-6">
-                                    {{ form.date.label_tag }} 
-                                    {{ form.date }}
+                            
+                                <!-- Row for Date and Time -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ form.date.label_tag }}
+                                        {{ form.date }}
+                                        {% if form.date.errors %}
+                                            <div class="text-danger">{{ form.date.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.time.label_tag }}
+                                        {{ form.time }}
+                                        {% if form.time.errors %}
+                                            <div class="text-danger">{{ form.time.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    {{ form.time.label_tag }} 
-                                    {{ form.time }}
+                            
+                                <!-- Row for Location -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form.location.label_tag }}
+                                        {{ form.location }}
+                                        {% if form.location.errors %}
+                                            <div class="text-danger">{{ form.location.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Row for Location -->
-                            <div class="row ">
-                                <div class="col-md-12">
-                                    {{ form.locattion.label_tag }} 
-                                    {{ form.locattion }}
+                            
+                                <!-- Row for Pooja Category and Pooja -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form.name_of_pooja.label_tag }}
+                                        {{ form.name_of_pooja }}
+                                        {% if form.name_of_pooja.errors %}
+                                            <div class="text-danger">{{ form.name_of_pooja.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Row for Pooja Category and Pooja -->
-                            <div class="row ">
-                                <div class="col-md-6">
-                                    {{ form.name_of_pooja_category.label_tag }}
-                                    
-                                    {{ form.name_of_pooja_category }}
+                            
+                                <!-- Row for Buttons -->
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button type="button" onclick="window.location.href='/find_pandit'"
+                                            class="btn btn_main_outline_form_global float-end">
+                                            <span class="fa fa-arrow-left"></span> Go Back
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <button type="submit" class="btn btn_main_form_global float-start">Book Now</button>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    {{ form.name_of_pooja.label_tag }} 
-                                    {{ form.name_of_pooja }}
-                                </div>
-                            </div>
-
-                            <!-- Row for Buttons -->
-                            <div class="row  ">
-                                <div class="col-12 col-md-6 ">
-                                    <button type="button" onclick="window.location.href='/find_pandit'"
-                                        class="btn btn_main_outline_form_global float-end">
-                                        <span class="fa fa-arrow-left"> </span>
-                                         Go
-                                        Back</button>
-                                </div>
-                                <div class="col-12   col-md-6 ">
-                                    <button type="submit"
-                                        class="btn btn_main_form_global float-start">Book
-                                        Now</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                            
+                        </div>
 
                     </div>
-
                 </div>
-            </div>
             </div>
         </div>
     </div>
