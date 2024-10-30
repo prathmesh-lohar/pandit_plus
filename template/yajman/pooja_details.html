@@ -1,0 +1,143 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}pandit plus | online pandit booking website{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'style/pages.css' %}">
+{% endblock link %}
+
+{% block main %}
+
+<style>
+    .btn-back{
+        border-radius: 50%;
+        border: 1px solid #E4752D;
+        padding: 4px 8px 4px 8px;
+        font-size: 14px;
+
+    }
+    h3{
+        color: #2A2A2A;
+
+font-family: Roboto;
+font-size: 22px;
+font-style: normal;
+font-weight: 600;
+line-height: 40px; /* 181.818% */
+letter-spacing: 0.44px;
+    }
+    h4{
+        color: #2A2A2A;
+
+font-family: Roboto;
+font-size: 22px;
+font-style: normal;
+font-weight: 600;
+line-height: 40px; /* 181.818% */
+letter-spacing: 0.44px;
+    }
+    p{
+        color: #9C9C9C;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 25px; /* 176.471% */
+letter-spacing: 0.68px;
+    }
+    h6{
+        color: #E4752D;
+font-family: Roboto;
+font-size: 17px;
+font-style: normal;
+font-weight: 600;
+line-height: 40px; /* 235.294% */
+letter-spacing: 0.34px;
+    }
+    li{
+        color: #9C9C9C;
+font-family: Roboto;
+font-size: 17px;
+font-style: normal;
+font-weight: 400;
+line-height: 30px; /* 176.471% */
+letter-spacing: 0.68px;
+    }
+</style>
+
+<div class="wrappped_body">
+
+    <section class="headding text-center">
+        <h1>Pooja details</h1>
+    </section>
+
+    <div class="content container-fliud mx-5">
+        
+        <div class="main-container form_container">
+            <h3 class=""> <button class="btn btn-back mx-2" onclick="window.location.href='/'"> <span class="fa fa-arrow-left"></span></button> <span class="mx-1"> {{pooja.services_type}}</span></h3>
+            <div class="container">
+                <div class="row my-4">
+                    <div class="col-4 my-2">
+                        <img style="width: 100%; border-radius: 5px;" src="{% if pooja.thumbnails %}{{pooja.thumbnails.url}}{% else %}{% static 'assets/png/no_dp.png' %}{% endif %}" alt="">
+                    </div>
+        
+                    <div class="col-8">
+                        <h4>{{pooja.services_type}} Description</h4>
+                        <p>
+                            {{pooja.description}}
+                        </p>
+                        <h4 class="">Some Popular Pooja</h4>
+                        <div class="row">
+                            <h6>home / Office Pooja</h6>
+                            <ul class="mx-5">
+                                <div class="row">
+                                    {% for i in services %}
+                                        {% if forloop.counter|divisibleby:5 %}
+                                            <!-- Start a new column every 5 items -->
+                                            <div class="col col-sm-4 mx-3">
+                                        {% endif %}
+                                        
+                                        <li>{{ i.service_name }}</li>
+                                        
+                                        {% if forloop.counter|divisibleby:5 or forloop.last %}
+                                            <!-- Close the column after 5 items or at the last item -->
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </ul>
+                            
+                          
+                          </div>
+                    </div>
+        
+                </div>
+                <div class="row">
+                    <h4>Related Pooja</h4>
+                    {% for j in services %}
+                    <div class="col-md-2 my-5">
+                        <img style="width: 100%; height: 155px; object-fit:cover; border-radius: 5px;" src="{% if j.thumbnails %}{{j.thumbnails.url}}{% else %}{% static 'assets/png/no_dp.png' %}{% endif %}"  alt="">
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+
+            </div>
+           
+       
+           
+        </div>
+        
+
+    </div>
+    
+
+
+</div>
+
+
+
+
+{% endblock main %}

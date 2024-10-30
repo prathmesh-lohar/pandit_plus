@@ -8,7 +8,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from pandit.models import services,pandit_profile,booking,pandit_service
+from pandit.models import services,pandit_profile,booking,pandit_service,services_type
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import BookingForm,YajmanProfileForm
 from django.template.loader import render_to_string
@@ -414,6 +414,21 @@ def translate(request):
             return JsonResponse({'error': str(e)}, status=500)
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
+
+@login_required
+def pooja_details(request, id):
+    from pandit.models import services
+    
+    pooja = services_type.objects.filter(id=id).first
+    services = services.objects.filter(services_type=id)
+    
+    
+    data = {
+        "pooja":pooja,
+        "services":services,
+    }
+    
+    return render(request, "yajman/pooja_details.html",data)
 
 
 

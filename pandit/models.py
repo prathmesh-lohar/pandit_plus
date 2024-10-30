@@ -43,6 +43,7 @@ class pandit_profile(models.Model):
 class services_type(models.Model):
     thumbnails = models.ImageField(upload_to="service_type_thumbnails")
     services_type = models.CharField(max_length=255, blank=True,null=True,default="")
+    description = models.TextField(blank=True, null=True)
     
     def __str__(self):
         return f"{self.services_type} "
@@ -50,6 +51,7 @@ class services_type(models.Model):
 class services(models.Model):
     services_type = models.ForeignKey(services_type, on_delete=models.CASCADE)
     service_name = models.CharField(max_length=255, blank=True,null=True,default="")
+    thumbnails = models.ImageField(upload_to="service_type_thumbnails",blank=True,null=True)
     
     def __str__(self):
         return f"{self.service_name} "
