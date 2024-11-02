@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+v^i$+2!3a&0u###^%xnii%t7if-)%+l+!j+fuu0r%49@^eoc('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -60,6 +60,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
  
     'django.contrib.staticfiles',
+    
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     'django_cleanup.apps.CleanupConfig',
     'yajman',
@@ -67,6 +73,19 @@ INSTALLED_APPS = [
     'payments'
 
 ]
+
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
+)
+
+LOGIN_REDIRECT_URL = '/'  # Redirect URL after login
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'  # Redirect URL after logout
+
+# Optionally configure email settings for account confirmation
+ACCOUNT_EMAIL_VERIFICATION = "none"  # or "mandatory" if you want to require email verification
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,7 +96,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    'allauth.account.middleware.AccountMiddleware',  
 ]
 
     
@@ -215,3 +234,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '<your-client-id>'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '<your-client-secret>'
+
+SOCIALACCOUNT_LOGIN_ON_GET=True

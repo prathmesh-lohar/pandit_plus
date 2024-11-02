@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="{% static 'style/login.css' %}">
 {% endblock link %}
 
+{% load socialaccount %}
+
+
 {% block main %}
 <div class="container-fluid wrapper p-4 p-xl-5" style="min-height: 100vh;">
     <div
@@ -19,6 +22,10 @@
             
                 <form action="login" method="post" class="form text-center w-100 px-0 px-lg-5 login_form">
                     {% csrf_token %}
+                    <a href="{% provider_login_url 'google' %}"  class="btn btn-outline-primary btn-sm form-control "> <span class="fab fa-google mx-1"></span> Login with Google</a>
+                    <span class="text-center " style="font-family: 'Roboto';
+    color: #404040a6;
+">or</span>
                     <input class="form-control mb-3" type="number" placeholder="Mobile Number" name="mobile" required>
                     <input class="form-control mb-3" type="password" placeholder="Password" name="password" required>
                     <p class="float-start regi">If you don't have an account: <a href="/register">Create account</a></p>
