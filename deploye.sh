@@ -7,7 +7,7 @@ set -e
 # ----------------------------
 APP_NAME="pandit_plus"
 REPO_URL="https://github.com/prathmesh-lohar/pandit_plus.git"
-DOMAIN="13.60.31.100"          # Replace with your domain or EC2 public IP
+DOMAIN="13.60.31.100 panditplus.in www.panditplus.in"          # Replace with your domain or EC2 public IP
 APP_DIR="/var/www/html/$APP_NAME"
 USER="www-data"
 PYTHON_BIN="python3"
