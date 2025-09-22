@@ -1,0 +1,15 @@
+
+Django
+pillow
+whitenoise
+django-admin-interface
+django-cleanup
+django-allauth
+mysqlclient
+requests
+jwt
+setuptools
+razorpay
+gunicorn
+
+
